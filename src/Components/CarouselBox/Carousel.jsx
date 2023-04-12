@@ -3,10 +3,11 @@ import { Carousel as MantineCarousel } from "@mantine/carousel";
 import { StateContextCustom } from "../../Context/StateContext";
 import { rem } from "@mantine/core";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
+import { TiStarFullOutline } from "react-icons/ti";
 import "./Carousel.css";
 
 const Carousel = () => {
-  const { topRated } = StateContextCustom();
+  const { topRated, genre, setMovieId } = StateContextCustom();
   console.log(topRated);
   return (
     <MantineCarousel
@@ -40,10 +41,40 @@ const Carousel = () => {
                   className="w-full h-full opacity-40 object-cover"
                 />
                 <div className="absolute bottom-10 left-5 md:left-12 flex flex-col gap-3 text-white w-[90%] md:w-[80%] lg:w-[60%] xl:w-[50%]">
-                  <h1 className=" text-4xl font-extrabold tracking-wider">
-                    {movie?.title}
-                  </h1>
-                  <p>{movie?.overview}</p>
+                  <div className="flex items-end gap-2">
+                    <h1 className=" text-4xl font-extrabold tracking-wider">
+                      {movie?.title}
+                    </h1>
+                    <span className="leading-[30px]">
+                      ( {movie?.vote_average} / 10 )
+                    </span>
+                  </div>
+
+                  <div className="flex gap-2">
+                    {genre.map(
+                      (g) =>
+                        movie.genre_ids.map((i) => i).includes(g.id) && (
+                          <p className="bg-red-900 rounded-md px-2 text-sm">
+                            {g.name}
+                          </p>
+                        )
+                    )}
+                  </div>
+
+                  <p className=" font-bold text-slate-100 tracking-wide">
+                    {movie?.overview}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    <button
+                      className=" px-8 py-2 bg-red-900 font-bold rounded-sm transition hover:bg-red-700"
+                      onClick={() => setMovieId(movie.id)}
+                    >
+                      Watch Trailer
+                    </button>
+                    <button className=" px-8 py-2 border border-slate-100 text-slate-50 font-bold rounded-sm transition hover:bg-slate-100 hover:text-slate-900">
+                      Add to Watchlist
+                    </button>
+                  </div>
                 </div>
               </div>
             </MantineCarousel.Slide>

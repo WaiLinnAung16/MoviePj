@@ -35,21 +35,16 @@ const Navbar = () => {
         <ul className="flex items-center gap-3">
           {navlink.map((nav) => {
             return (
-              <NavLink id="navMenu" to={`${nav.link}`} className="text-black">
+              <NavLink
+                id="navMenu"
+                to={`${nav.link}`}
+                className="text-black"
+                key={nav.id}
+              >
                 {nav.title}
-                {/* <span
-                  id="border"
-                  // className="after:block after:absolute after:-inset-0 after:border-2 after:border-slate-900 after:translate-x-1 after:translate-y-1"
-                ></span> */}
               </NavLink>
             );
           })}
-          {/* <NavLink className=" bg-slate-900 px-4 py-1 text-white relative">
-            Home
-            <span className="after:block after:absolute after:-inset-0 after:border-2 after:border-slate-900 after:translate-x-1 after:translate-y-1"></span>
-          </NavLink>
-          <li>Movies</li>
-          <li>TvShow</li> */}
         </ul>
       </div>
     </div>
