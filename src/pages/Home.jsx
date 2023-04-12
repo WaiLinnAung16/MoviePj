@@ -4,7 +4,7 @@ import { StateContextCustom } from "../Context/StateContext";
 
 const Home = () => {
   const { popular, topRated } = StateContextCustom();
-  console.log(topRated);
+  // console.log(topRated);
   return (
     <div>
       <Hero />
