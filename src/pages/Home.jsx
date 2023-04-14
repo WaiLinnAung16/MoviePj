@@ -1,14 +1,14 @@
 import React from "react";
 import Hero from "../Components/Hero";
-import Popular from "../Components/Popular";
 import TopRated from "../Components/TopRated";
+import NowPlaying from "../Components/NowPlaying";
 
 const Home = () => {
   return (
-    <div>
+    <div className="mt-20">
       <Hero />
-      <Popular />
       <TopRated />
+      <NowPlaying />
     </div>
   );
 };

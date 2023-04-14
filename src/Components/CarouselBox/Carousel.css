@@ -2,7 +2,8 @@
   width: 50px;
   height: 50px;
   font-size: 40px;
-  color: white;
+  color: black;
+  background-color: #fff !important;
   transition: opacity 300ms ease;
   opacity: 0;
 }

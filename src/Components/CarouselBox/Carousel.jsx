@@ -6,11 +6,12 @@ import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import "./Carousel.css";
 
 const Carousel = () => {
-  const { topRated, genre } = StateContextCustom();
+  const { upComing, genre } = StateContextCustom();
   return (
     <MantineCarousel
       maw={"100vw"}
       height={700}
+      mb="lg"
       withIndicators
       withControls
       nextControlIcon={<BiChevronRight />}
@@ -29,9 +30,9 @@ const Carousel = () => {
         },
       }}
     >
-      {topRated?.map((movie, i) => {
+      {upComing?.map((movie, i) => {
         return (
-          i > 9 && (
+          i < 6 && (
             <MantineCarousel.Slide key={movie.id}>
               <div className="bg-gray-900 h-[700px]">
                 <img
