@@ -4,16 +4,19 @@ import Navbar from "./Components/Navbar";
 import Home from "./pages/Home";
 import Movies from "./pages/Movies";
 import TvShow from "./pages/TvShow";
+import Footer from "./Components/Footer";
 
 const App = () => {
   return (
-    <div>
+    <div className="relative">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/movies" element={<Movies />} />
         <Route path="/TvShow" element={<TvShow />} />
       </Routes>
+      <div className=" my-[130px]"></div>
+      <Footer />
     </div>
   );
 };

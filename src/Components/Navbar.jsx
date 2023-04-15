@@ -24,8 +24,8 @@ const Navbar = () => {
     <div className=" py-5 fixed top-0 w-full z-10 bg-slate-100/80 backdrop-blur-sm">
       <div className=" container mx-auto flex justify-between items-center">
         <Link to={"/"}>
-          <h1 className="relative group">
-            <span className="flex items-center gap-1 z-20 font-extrabold text-2xl text-white bg-slate-800 px-3 py-1 relative transition-all duration-500 -skew-y-3 group-hover:-translate-x-1 group-hover:-translate-y-1">
+          <h1 className="relative group cursor-pointer">
+            <span className="flex items-center gap-1 z-20 font-extrabold text-2xl text-white bg-slate-900 px-3 py-1 relative transition-all duration-500 -skew-y-3 group-hover:-translate-x-1 group-hover:-translate-y-1">
               <RiMovie2Line />
               YinShote
             </span>

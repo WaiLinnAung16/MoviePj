@@ -7,6 +7,7 @@ export const StateContextProvider = ({ children }) => {
   const [topRated, setTopRated] = useState([]);
   const [nowPlaying, setNowPlaying] = useState([]);
   const [upComing, setUpComing] = useState([]);
+  const [tvShow, setTvShow] = useState([]);
   const [genre, setGenre] = useState([]);
 
   const fetchPopular = async () => {
@@ -27,6 +28,7 @@ export const StateContextProvider = ({ children }) => {
     );
     const { results } = await api.json();
     setNowPlaying(results);
+    console.log(results);
   };
   const fetchUpComing = async () => {
     const api = await fetch(
@@ -34,6 +36,13 @@ export const StateContextProvider = ({ children }) => {
     );
     const { results } = await api.json();
     setUpComing(results);
+  };
+  const fetchTvShow = async () => {
+    const api = await fetch(
+      `https://api.themoviedb.org/3/tv/popular?api_key=0af31f4831741bb6287a87a60e641056&language=en-US&page=1`
+    );
+    const { results } = await api.json();
+    setTvShow(results);
   };
   const fetchGenre = async () => {
     const api = await fetch(
@@ -49,9 +58,10 @@ export const StateContextProvider = ({ children }) => {
     fetchGenre();
     fetchNowPlaying();
     fetchUpComing();
+    fetchTvShow();
   }, []);
 
-  const data = { popular, topRated, nowPlaying, upComing, genre };
+  const data = { popular, topRated, nowPlaying, upComing, tvShow, genre };
   return <StateContext.Provider value={data}>{children}</StateContext.Provider>;
 };
 export const StateContextCustom = () => useContext(StateContext);

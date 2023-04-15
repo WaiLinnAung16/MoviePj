@@ -1,7 +1,7 @@
 import React from "react";
 import { Badge, Title } from "@mantine/core";
 import { StateContextCustom } from "../../Context/StateContext";
-const MoviesSlide = (props) => {
+const TvSlide = (props) => {
   const { genre } = StateContextCustom();
   return (
     <div className="grid grid-cols-12 gap-8 mx-5">
@@ -24,7 +24,7 @@ const MoviesSlide = (props) => {
               className=" h-[300px] rounded "
             />
             <Title order={4} className="truncate">
-              {movie?.title}
+              {movie?.name}
             </Title>
             <div className="flex gap-2 ">
               {genre.map(
@@ -48,11 +48,4 @@ const MoviesSlide = (props) => {
   );
 };
 
-export default MoviesSlide;
-
-{
-  /* <img
-  src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
-  className=" h-full w-full "
-/> */
-}
+export default TvSlide;

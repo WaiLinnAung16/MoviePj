@@ -4,7 +4,7 @@ import MoviesSlide from "./utils/MoviesSlide";
 
 const NowPlaying = () => {
   const { nowPlaying } = StateContextCustom();
-  return <MoviesSlide title="Now Playing" data={nowPlaying} />;
+  return <MoviesSlide data={nowPlaying} />;
 };
 
 export default NowPlaying;
