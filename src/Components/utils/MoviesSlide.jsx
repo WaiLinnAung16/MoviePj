@@ -1,8 +1,11 @@
 import React from "react";
 import { Badge, Title } from "@mantine/core";
 import { StateContextCustom } from "../../Context/StateContext";
+import { useNavigate } from "react-router-dom";
 const MoviesSlide = (props) => {
   const { genre } = StateContextCustom();
+  const nav = useNavigate();
+
   return (
     <div className="grid grid-cols-12 gap-8 mx-5">
       {props.data?.map((movie) => {
@@ -10,6 +13,7 @@ const MoviesSlide = (props) => {
           <div
             key={movie.id}
             className="col-span-1 relative flex flex-col gap-1"
+            onClick={() => nav(`/detail/${movie.id}`)}
           >
             <Badge
               variant="filled"
