@@ -9,7 +9,7 @@ const TvSlide = (props) => {
         return (
           <div
             key={movie.id}
-            className="col-span-1 relative flex flex-col gap-1"
+            className="col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2 2xl:col-span-1 relative flex flex-col gap-1"
           >
             <Badge
               variant="filled"

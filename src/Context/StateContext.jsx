@@ -30,7 +30,6 @@ export const StateContextProvider = ({ children }) => {
     );
     const { results } = await api.json();
     setNowPlaying(results);
-    console.log(results);
   };
   const fetchUpComing = async () => {
     const api = await fetch(
@@ -52,7 +51,6 @@ export const StateContextProvider = ({ children }) => {
     );
     const results = await api.json();
     setDetail(results);
-    console.log(detail);
   };
   const fetchGenre = async () => {
     const api = await fetch(

@@ -21,7 +21,7 @@ const navlink = [
 ];
 const Navbar = () => {
   return (
-    <div className=" py-5 fixed top-0 w-full z-10 bg-slate-100/80 backdrop-blur-sm">
+    <div className=" py-5 px-5 fixed top-0 w-full z-10 bg-slate-100/80 backdrop-blur-sm">
       <div className=" container mx-auto flex justify-between items-center">
         <Link to={"/"}>
           <h1 className="relative group cursor-pointer">
@@ -32,7 +32,7 @@ const Navbar = () => {
             <span className="-z-10 after:block after:absolute after:-inset-0 after:-skew-y-3  after:border-2 after:border-slate-800"></span>
           </h1>
         </Link>
-        <ul className="flex items-center gap-3">
+        <ul className="lg:flex items-center gap-3 hidden">
           {navlink.map((nav) => {
             return (
               <NavLink
