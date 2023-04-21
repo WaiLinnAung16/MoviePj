@@ -29,7 +29,7 @@ const Detail = () => {
           className=" w-full h-full object-cover"
         />
       </div>
-      <div className="absolute py-2 lg:py-0 top-[12%] md:top-[15%] lg:top-[30%] left-[5%] md:left-[10%] lg:left-[2%] xl:left-[15%] 2xl:left-[20%] w-[90%] md:w-[80%] lg:w-[95%] xl:w-[70%] 2xl:w-[45%] flex items-center flex-col  lg:flex-row gap-2 backdrop-blur-md rounded shadow-md container ">
+      <div className="absolute py-2 lg:py-0 top-[10%] md:top-[15%] lg:top-[30%] left-[5%] md:left-[10%] lg:left-[2%] xl:left-[15%] 2xl:left-[20%] w-[90%] md:w-[80%] lg:w-[95%] xl:w-[70%] 2xl:w-[45%] flex items-center flex-col  lg:flex-row gap-2 backdrop-blur-md rounded shadow-md container ">
         <img
           src={`https://image.tmdb.org/t/p/original/${detail?.poster_path}`}
           className="h-[320px] md:h-[400px] lg:h-[500px] rounded "
