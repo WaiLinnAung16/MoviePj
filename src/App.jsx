@@ -9,7 +9,7 @@ import Detail from "./pages/Detail";
 
 const App = () => {
   return (
-    <div className="relative">
+    <div>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -17,7 +17,6 @@ const App = () => {
         <Route path="/TvShow" element={<TvShow />} />
         <Route path="/detail/:id" element={<Detail />} />
       </Routes>
-      <div className=" my-[130px]"></div>
       <Footer />
     </div>
   );

@@ -21,23 +21,22 @@ const Detail = () => {
     getHourMin(detail.runtime);
   }, [detail]);
   return (
-    <div className="mt-20 min-h-screen">
-      <div className="bg-gradient-to-b from-slate-800/40 to-slate-900 absolute top-0 w-full h-screen backdrop-blur-sm"></div>
+    <div className="min-h-screen">
+      <div className="bg-gradient-to-b from-slate-800/40 to-slate-900 absolute top-0 w-full min-h-screen backdrop-blur-sm"></div>
       <div className="h-screen">
         <img
           src={`https://image.tmdb.org/t/p/original/${detail?.backdrop_path}`}
           className=" w-full h-full object-cover"
         />
       </div>
-      <div className="absolute py-5 lg:py-0 top-[3%] lg:top-[20%] left-[5%] md:left-[10%] lg:left-[2%] xl:left-[15%] 2xl:left-[20%] w-[90%] md:w-[80%] lg:w-[95%] xl:w-[70%] 2xl:w-[45%] flex items-center flex-col  lg:flex-row gap-5 backdrop-blur-md rounded shadow-md container ">
+      <div className="absolute py-2 lg:py-0 top-[10%] md:top-[15%] lg:top-[30%] left-[5%] md:left-[10%] lg:left-[2%] xl:left-[15%] 2xl:left-[20%] w-[90%] md:w-[80%] lg:w-[95%] xl:w-[70%] 2xl:w-[45%] flex items-center flex-col  lg:flex-row gap-2 backdrop-blur-md rounded shadow-md container ">
         <img
           src={`https://image.tmdb.org/t/p/original/${detail?.poster_path}`}
-          className="h-[400px] lg:h-[500px] rounded "
+          className="h-[350px] md:h-[400px] lg:h-[500px] rounded "
         />
-
         <div className="text-white p-3 flex flex-col gap-4">
           <div>
-            <h1 className="text-3xl md:text-3xl xl:text-4xl font-extrabold tracking-wide mb-3">
+            <h1 className="text-2xl md:text-3xl xl:text-4xl font-extrabold tracking-wide mb-3">
               {detail?.title}
               <span className="text-base xl:text-lg font-semibold text-slate-300 ml-2">
                 ( {detail?.vote_average?.toFixed(1)} )

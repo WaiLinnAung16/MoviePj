@@ -27,7 +27,7 @@ const MoviesSlide = (props) => {
             <div className="rounded overflow-hidden bg-slate-900">
               <img
                 src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
-                className=" h-[300px] w-full transition-all group-hover:scale-110 group-hover:opacity-50"
+                className="h-[250px] md:h-[300px] w-full transition-all group-hover:scale-110 group-hover:opacity-50"
               />
             </div>
             <Title order={4} className="truncate">
