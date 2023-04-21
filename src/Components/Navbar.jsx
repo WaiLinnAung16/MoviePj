@@ -21,7 +21,7 @@ const navlink = [
 ];
 const Navbar = () => {
   return (
-    <div className=" py-5 px-5 fixed top-0 w-full z-10 bg-slate-100/80 backdrop-blur-sm">
+    <div className=" py-5 px-5 fixed top-0 w-full z-50 bg-slate-100/80 backdrop-blur-sm">
       <div className=" container mx-auto flex justify-between items-center">
         <Link to={"/"}>
           <h1 className="relative group cursor-pointer">
