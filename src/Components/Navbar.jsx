@@ -73,6 +73,7 @@ const Navbar = () => {
             {navlink.map((nav) => {
               return (
                 <NavLink
+                  id="navMenu"
                   to={`${nav.link}`}
                   className="text-black"
                   key={nav.id}
