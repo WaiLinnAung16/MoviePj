@@ -52,7 +52,7 @@ export const StateContextProvider = ({ children }) => {
       `https://api.themoviedb.org/3/movie/${movieId}?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
     );
     const results = await api.json();
-    setTvDetail(results);
+    setDetail(results);
   };
   const fetchCast = async () => {
     const api = await fetch(
