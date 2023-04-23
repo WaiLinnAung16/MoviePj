@@ -35,7 +35,7 @@ const Carousel = () => {
           i < 6 && (
             <MantineCarousel.Slide key={movie.id}>
               <div className="h-[700px]">
-                <div className="bg-gradient-to-b from-transparent via-slate-900/80 to-slate-900 absolute top-0 w-full h-full z-10"></div>
+                <div className="bg-gradient-to-b from-slate-900/40 via-slate-900/60 to-slate-900 absolute top-0 w-full h-full z-10"></div>
                 <img
                   src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
                   className="w-full h-full object-cover"
