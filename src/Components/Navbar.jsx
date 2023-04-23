@@ -77,7 +77,6 @@ const Navbar = () => {
                   to={`${nav.link}`}
                   className="text-black"
                   key={nav.id}
-                  onClick={() => setShow((show = !show))}
                 >
                   {nav.title}
                 </NavLink>
