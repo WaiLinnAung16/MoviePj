@@ -4,7 +4,6 @@ import TvSlide from "./utils/TvSlide";
 
 const TvShows = () => {
   const { tvShow } = StateContextCustom();
-  console.log(tvShow);
   return (
     <div className="pt-12 flex flex-col items-start gap-5">
       <h1 className="px-4 py-1 bg-slate-900 text-white text-2xl font-bold ml-5 mb-5 relative">
