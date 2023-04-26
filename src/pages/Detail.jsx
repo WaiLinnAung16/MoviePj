@@ -10,7 +10,7 @@ const Detail = () => {
     top: 0,
   });
   const { id } = useParams();
-  const { setMovieId, detail, cast } = StateContextCustom();
+  const { setMovieId, detail, cast, trailer } = StateContextCustom();
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
   const getHourMin = (num) => {
@@ -20,8 +20,9 @@ const Detail = () => {
   useEffect(() => {
     setMovieId(id);
     getHourMin(detail.runtime);
-    // console.log(detail);
-  }, [detail, cast]);
+    console.log(detail);
+    console.log(trailer);
+  }, [detail, trailer, cast]);
   return (
     <div className=" h-full lg:h-screen bg-img flex justify-center items-center mt-20">
       <div className="fixed top-0 h-screen">
@@ -85,6 +86,22 @@ const Detail = () => {
                 </div>
               ))}
             </div>
+          </div>
+          <div className=" flex items-center gap-2">
+            {/* {trailer?.map((t) => {
+              return (
+                t.type === "Trailer" && (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${t.key}`}
+                    height="300px"
+                  ></iframe>
+                )
+              );
+            })} */}
+            {/* <iframe
+              src={`https://www.youtube.com/embed/${}`}
+              height="300px"
+            ></iframe> */}
           </div>
         </div>
       </div>

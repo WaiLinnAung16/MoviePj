@@ -13,6 +13,7 @@ export const StateContextProvider = ({ children }) => {
   const [movieId, setMovieId] = useState(0);
   const [cast, setCast] = useState([]);
   const [genre, setGenre] = useState([]);
+  const [trailer, setTrailer] = useState([]);
 
   const fetchPopular = async () => {
     const api = await fetch(`
@@ -68,6 +69,13 @@ export const StateContextProvider = ({ children }) => {
     const results = await api.json();
     setTvDetail(results);
   };
+  const fetchTrailer = async () => {
+    const api = await fetch(
+      `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+    );
+    const { results } = await api.json();
+    setTrailer(results);
+  };
   const fetchGenre = async () => {
     const api = await fetch(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
@@ -87,6 +95,7 @@ export const StateContextProvider = ({ children }) => {
   useEffect(() => {
     fetchMovieDetail();
     fetchTvDetail();
+    fetchTrailer();
     fetchCast();
   }, [movieId]);
   const data = {
@@ -100,6 +109,7 @@ export const StateContextProvider = ({ children }) => {
     genre,
     setMovieId,
     cast,
+    trailer,
   };
   return <StateContext.Provider value={data}>{children}</StateContext.Provider>;
 };
