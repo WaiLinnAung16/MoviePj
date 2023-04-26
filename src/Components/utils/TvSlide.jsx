@@ -31,7 +31,7 @@ const TvSlide = (props) => {
               />
             </div>
             <Title order={4} className="truncate">
-              {movie?.title}
+              {movie?.name}
             </Title>
             <div className="flex gap-2 ">
               {genre.map(

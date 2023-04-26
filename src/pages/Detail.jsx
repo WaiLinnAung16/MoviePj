@@ -5,6 +5,7 @@ import { Avatar } from "@mantine/core";
 import { AiFillStar } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
 import { FiClock } from "react-icons/fi";
+import { IoPlayOutline } from "react-icons/io5";
 const Detail = () => {
   window.scrollTo({
     top: 0,
@@ -40,10 +41,24 @@ const Detail = () => {
         />
         <div className="text-slate-200 flex flex-col gap-4 items-start">
           <div>
-            <h1 className="text-3xl md:text-3xl xl:text-4xl font-extrabold tracking-wide mb-1">
-              {detail?.title}
-            </h1>
-            <div className="flex items-center flex-wrap gap-2 mb-2">
+            <div className="flex items-center gap-3 flex-wrap">
+              <h1 className="text-3xl md:text-3xl xl:text-4xl font-extrabold tracking-wide mb-1">
+                {detail?.title}
+              </h1>
+              <div className="flex items-center gap-1 border border-white px-2 py-1 rounded-full">
+                <IoPlayOutline className="text-xl" />
+                {trailer?.map((t, i) => {
+                  return (
+                    i === trailer.length - 1 && (
+                      <a href={`https://youtu.be/${t.key}`} target="_blank">
+                        Play Trailer
+                      </a>
+                    )
+                  );
+                })}
+              </div>
+            </div>
+            <div className="flex items-center flex-wrap gap-2 mb-2 mt-3 md:mt-0">
               {detail?.genres?.map((genre) => (
                 <h1
                   className="bg-red-900 rounded-md px-2 text-sm"
@@ -74,7 +89,7 @@ const Detail = () => {
           <div className="h-[220px] overflow-y-scroll custom-scrollbar ">
             <div className="grid grid-cols-12 gap-4">
               {cast?.map((c, i) => (
-                <div className="col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2">
+                <div className="col-span-6 md:col-span-3  xl:col-span-2">
                   <Avatar
                     size="lg"
                     src={`https://image.tmdb.org/t/p/original/${c.profile_path}`}
@@ -86,22 +101,6 @@ const Detail = () => {
                 </div>
               ))}
             </div>
-          </div>
-          <div className=" flex items-center gap-2">
-            {/* {trailer?.map((t) => {
-              return (
-                t.type === "Trailer" && (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${t.key}`}
-                    height="300px"
-                  ></iframe>
-                )
-              );
-            })} */}
-            {/* <iframe
-              src={`https://www.youtube.com/embed/${}`}
-              height="300px"
-            ></iframe> */}
           </div>
         </div>
       </div>

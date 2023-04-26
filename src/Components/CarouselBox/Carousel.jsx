@@ -4,9 +4,12 @@ import { StateContextCustom } from "../../Context/StateContext";
 import { rem } from "@mantine/core";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
 import "./Carousel.css";
+import { useNavigate } from "react-router-dom";
 
 const Carousel = () => {
   const { upComing, genre } = StateContextCustom();
+  const nav = useNavigate();
+
   return (
     <MantineCarousel
       maw={"100vw"}
@@ -63,7 +66,10 @@ const Carousel = () => {
                     {movie?.overview?.substring(0, 180)}...
                   </p>
                   <div className="flex items-center gap-3">
-                    <button className="px-8 py-2 border border-slate-100 text-slate-50 font-bold rounded-sm transition active:bg-slate-100 active:text-slate-900">
+                    <button
+                      onClick={() => nav(`/detail/${movie.id}`)}
+                      className="px-8 py-2 border border-slate-100 text-slate-50 font-bold rounded-sm transition active:bg-slate-100 active:text-slate-900"
+                    >
                       More Detail
                     </button>
                   </div>
