@@ -3,6 +3,7 @@ import { ActionIcon, Badge, Title } from "@mantine/core";
 import { StateContextCustom } from "../../Context/StateContext";
 import { useNavigate } from "react-router-dom";
 import { SlEye } from "react-icons/sl";
+import LoadingGrid from "../LoadingGrid";
 const MoviesSlide = (props) => {
   const { genre } = StateContextCustom();
   const nav = useNavigate();
