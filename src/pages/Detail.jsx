@@ -45,12 +45,12 @@ const Detail = () => {
               <h1 className="text-3xl md:text-3xl xl:text-4xl font-extrabold tracking-wide mb-1">
                 {detail?.title}
               </h1>
-              <div className="flex items-center gap-1 border border-white px-2 py-1 rounded-full">
-                <IoPlayOutline className="text-xl" />
+              <div >
                 {trailer?.map((t, i) => {
                   return (
                     i === trailer.length - 1 && (
-                      <a href={`https://youtu.be/${t.key}`} target="_blank">
+                      <a href={`https://youtu.be/${t.key}`} target="_blank" className="flex items-center gap-1 border border-white px-2 py-1 rounded-full">
+                        <IoPlayOutline className="text-xl" />
                         Play Trailer
                       </a>
                     )

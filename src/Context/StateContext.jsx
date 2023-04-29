@@ -43,6 +43,7 @@ export const StateContextProvider = ({ children }) => {
     );
     const { results } = await api.json();
     setUpComing(results);
+    setLoading(false);
   };
   const fetchTvShow = async () => {
     const api = await fetch(
