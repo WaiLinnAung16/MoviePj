@@ -1,9 +1,9 @@
 import React from "react";
-import { ActionIcon, Badge, Title } from "@mantine/core";
+import { Badge, Title } from "@mantine/core";
 import { StateContextCustom } from "../../Context/StateContext";
 import { useNavigate } from "react-router-dom";
-import { SlEye } from "react-icons/sl";
-import LoadingGrid from "../LoadingGrid";
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 const MoviesSlide = (props) => {
   const { genre } = StateContextCustom();
   const nav = useNavigate();
@@ -26,7 +26,7 @@ const MoviesSlide = (props) => {
               {movie?.vote_average}
             </Badge>
             <div className="rounded overflow-hidden bg-slate-900">
-              <img
+              <LazyLoadImage
                 src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                 className="h-[250px] md:h-[300px] w-full transition-all group-hover:scale-110 group-hover:opacity-50"
               />

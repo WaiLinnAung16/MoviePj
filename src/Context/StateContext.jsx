@@ -15,6 +15,7 @@ export const StateContextProvider = ({ children }) => {
   const [genre, setGenre] = useState([]);
   const [trailer, setTrailer] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [detailLoading, setDetailLoading] = useState(true);
 
   const fetchPopular = async () => {
     const api = await fetch(`
@@ -59,6 +60,7 @@ export const StateContextProvider = ({ children }) => {
     );
     const results = await api.json();
     setDetail(results);
+    setDetailLoading(false);
   };
   const fetchCast = async () => {
     const api = await fetch(
@@ -116,6 +118,7 @@ export const StateContextProvider = ({ children }) => {
     cast,
     trailer,
     loading,
+    detailLoading,
   };
   return <StateContext.Provider value={data}>{children}</StateContext.Provider>;
 };
