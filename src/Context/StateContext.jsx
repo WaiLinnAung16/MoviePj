@@ -12,6 +12,7 @@ export const StateContextProvider = ({ children }) => {
   const [tvDetail, setTvDetail] = useState([]);
   const [movieId, setMovieId] = useState(0);
   const [cast, setCast] = useState([]);
+  const [tvCast, setTvCast] = useState([]);
   const [genre, setGenre] = useState([]);
   const [trailer, setTrailer] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -60,7 +61,6 @@ export const StateContextProvider = ({ children }) => {
     );
     const results = await api.json();
     setDetail(results);
-    setDetailLoading(false);
   };
   const fetchCast = async () => {
     const api = await fetch(
@@ -69,11 +69,20 @@ export const StateContextProvider = ({ children }) => {
     const { cast } = await api.json();
     setCast(cast);
   };
+  const fetchTvCast = async () => {
+    const api = await fetch(
+      `https://api.themoviedb.org/3/tv/${movieId}/credits?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+    );
+    const { cast } = await api.json();
+    setTvCast(cast);
+  };
+  
   const fetchTvDetail = async () => {
     const api = await fetch(
       `https://api.themoviedb.org/3/tv/${movieId}?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
     );
     const results = await api.json();
+    console.log(results);
     setTvDetail(results);
   };
   const fetchTrailer = async () => {
@@ -104,6 +113,7 @@ export const StateContextProvider = ({ children }) => {
     fetchTvDetail();
     fetchTrailer();
     fetchCast();
+    fetchTvCast();
   }, [movieId]);
   const data = {
     popular,
@@ -116,9 +126,11 @@ export const StateContextProvider = ({ children }) => {
     genre,
     setMovieId,
     cast,
+    tvCast,
     trailer,
     loading,
     detailLoading,
+    setDetailLoading
   };
   return <StateContext.Provider value={data}>{children}</StateContext.Provider>;
 };

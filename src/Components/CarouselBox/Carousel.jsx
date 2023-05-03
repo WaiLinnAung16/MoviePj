@@ -18,7 +18,7 @@ const Carousel = () => {
       ) : (
         <MantineCarousel
           maw={"100vw"}
-          height={700}
+          height={600}
           mb="lg"
           withIndicators
           withControls

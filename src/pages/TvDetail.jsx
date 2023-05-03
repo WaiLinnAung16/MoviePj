@@ -10,18 +10,11 @@ const TvDetail = () => {
     top: 0,
   });
   const { id } = useParams();
-  const { setMovieId, tvDetail } = StateContextCustom();
-  //   const [hour, setHour] = useState("");
-  //   const [minute, setMinute] = useState("");
-  //   const getHourMin = (num) => {
-  //     setHour(Math.floor(num / 60).toString());
-  //     setMinute((num / 60).toFixed(2).toString().split(".")[1]);
-  //   };
+  const { setMovieId, tvDetail,tvCast } = StateContextCustom();
   useEffect(() => {
     setMovieId(id);
-    // getHourMin(detail.runtime);
     console.log(tvDetail);
-  }, [tvDetail]);
+  }, [tvDetail,tvCast]);
   return (
     <div className=" h-full lg:h-screen bg-img flex justify-center items-center mt-20">
       <div className="fixed top-0 h-screen">
@@ -71,13 +64,13 @@ const TvDetail = () => {
             <p className=" leading-6 text-slate-100">{tvDetail?.overview}</p>
           </div>
           <h1 className="text-xl font-bold tracking-wide mb-3">Cast</h1>
-          <div className="h-[220px] overflow-y-scroll custom-scrollbar ">
-            {/* <div className="grid grid-cols-12 gap-4">
-              {cast?.map((c, i) => (
+          <div className="h-[220px] overflow-y-scroll custom-scrollbar">
+            <div className="grid grid-cols-12 gap-4">
+              {tvCast?.map((c) => (
                 <div className="col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2">
                   <Avatar
                     size="lg"
-                    src={`https://image.tmdb.org/t/p/original/${c.profile_path}`}
+                    src={`https://image.tmdb.org/t/p/original/${c?.profile_path}`}
                   ></Avatar>
                   <h1 className="font-semibold mt-2">{c?.name}</h1>
                   <p className="font-light text-slate-100 italic">
@@ -85,7 +78,7 @@ const TvDetail = () => {
                   </p>
                 </div>
               ))}
-            </div> */}
+            </div>
           </div>
         </div>
       </div>

@@ -13,14 +13,14 @@ const TvSlide = (props) => {
         return (
           <div
             key={movie.id}
-            className="col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2 2xl:col-span-1 relative flex flex-col gap-1 cursor-pointer group"
+            className="col-span-6 md:col-span-3 lg:col-span-3 xl:col-span-2 2xl:col-span-1 relative flex flex-col gap-1 cursor-pointer group"
             onClick={() => nav(`/tvShow/${movie.id}`)}
           >
             <Badge
               variant="filled"
               size="lg"
               radius="lg"
-              className="absolute -top-3 left-[40%] bg-red-900 z-30"
+              className="absolute -top-3 left-[38%] md:left-[40%] bg-red-900 z-30"
             >
               {movie?.vote_average}
             </Badge>

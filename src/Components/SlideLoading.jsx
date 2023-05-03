@@ -2,7 +2,7 @@ import React from 'react'
 
 const SlideLoading = () => {
   return (
-    <div className='max-w-screen h-[500px] bg-slate-700 animate-pulse relative'>
+    <div className='max-w-screen h-[500px] bg-slate-400 animate-pulse relative'>
         <div className="absolute bottom-10 left-5 md:left-12 flex flex-col gap-3 w-[90%] md:w-[80%] lg:w-[60%] xl:w-[40%] z-10">
             <div className='w-72 h-8 rounded bg-slate-300'></div>
             <div className='flex gap-1 items-center'>
