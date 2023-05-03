@@ -10,11 +10,10 @@ const TvDetail = () => {
     top: 0,
   });
   const { id } = useParams();
-  const { setMovieId, tvDetail,tvCast } = StateContextCustom();
+  const { setTvId, tvDetail, tvCast } = StateContextCustom();
   useEffect(() => {
-    setMovieId(id);
-    console.log(tvDetail);
-  }, [tvDetail,tvCast]);
+    setTvId(id);
+  }, [tvDetail, tvCast]);
   return (
     <div className=" h-full lg:h-screen bg-img flex justify-center items-center mt-20">
       <div className="fixed top-0 h-screen">
@@ -64,21 +63,30 @@ const TvDetail = () => {
             <p className=" leading-6 text-slate-100">{tvDetail?.overview}</p>
           </div>
           <h1 className="text-xl font-bold tracking-wide mb-3">Cast</h1>
-          <div className="h-[220px] overflow-y-scroll custom-scrollbar">
-            <div className="grid grid-cols-12 gap-4">
-              {tvCast?.map((c) => (
-                <div className="col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2">
-                  <Avatar
-                    size="lg"
-                    src={`https://image.tmdb.org/t/p/original/${c?.profile_path}`}
-                  ></Avatar>
-                  <h1 className="font-semibold mt-2">{c?.name}</h1>
-                  <p className="font-light text-slate-100 italic">
-                    {c?.character}
-                  </p>
+          <div>
+            {tvCast?.length === 0 ? (
+              <h1>There is no data.</h1>
+            ) : (
+              <div className="h-[220px] overflow-y-scroll custom-scrollbar">
+                <div className="grid grid-cols-12 gap-4">
+                  {tvCast?.map((c) => (
+                    <div
+                      key={c.id}
+                      className="col-span-6 md:col-span-2 lg:col-span-3 xl:col-span-2"
+                    >
+                      <Avatar
+                        size="lg"
+                        src={`https://image.tmdb.org/t/p/original/${c?.profile_path}`}
+                      ></Avatar>
+                      <h1 className="font-semibold mt-2">{c?.name}</h1>
+                      <p className="font-light text-slate-100 italic">
+                        {c?.character}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            )}
           </div>
         </div>
       </div>

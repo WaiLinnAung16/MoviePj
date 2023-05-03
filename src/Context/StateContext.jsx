@@ -10,7 +10,8 @@ export const StateContextProvider = ({ children }) => {
   const [tvShow, setTvShow] = useState([]);
   const [detail, setDetail] = useState([]);
   const [tvDetail, setTvDetail] = useState([]);
-  const [movieId, setMovieId] = useState(0);
+  const [movieId, setMovieId] = useState(640146);
+  const [tvId, setTvId] = useState(640146);
   const [cast, setCast] = useState([]);
   const [tvCast, setTvCast] = useState([]);
   const [genre, setGenre] = useState([]);
@@ -71,18 +72,17 @@ export const StateContextProvider = ({ children }) => {
   };
   const fetchTvCast = async () => {
     const api = await fetch(
-      `https://api.themoviedb.org/3/tv/${movieId}/credits?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+      `https://api.themoviedb.org/3/tv/${tvId}/credits?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
     );
     const { cast } = await api.json();
     setTvCast(cast);
   };
-  
+
   const fetchTvDetail = async () => {
     const api = await fetch(
-      `https://api.themoviedb.org/3/tv/${movieId}?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+      `https://api.themoviedb.org/3/tv/${tvId}?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
     );
     const results = await api.json();
-    console.log(results);
     setTvDetail(results);
   };
   const fetchTrailer = async () => {
@@ -110,11 +110,13 @@ export const StateContextProvider = ({ children }) => {
   }, []);
   useEffect(() => {
     fetchMovieDetail();
-    fetchTvDetail();
     fetchTrailer();
     fetchCast();
-    fetchTvCast();
   }, [movieId]);
+  useEffect(() => {
+    fetchTvDetail();
+    fetchTvCast();
+  }, [tvId]);
   const data = {
     popular,
     topRated,
@@ -125,12 +127,13 @@ export const StateContextProvider = ({ children }) => {
     tvDetail,
     genre,
     setMovieId,
+    setTvId,
     cast,
     tvCast,
     trailer,
     loading,
     detailLoading,
-    setDetailLoading
+    setDetailLoading,
   };
   return <StateContext.Provider value={data}>{children}</StateContext.Provider>;
 };

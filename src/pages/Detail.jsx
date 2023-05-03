@@ -14,7 +14,7 @@ const Detail = () => {
     top: 0,
   });
   const { id } = useParams();
-  const { setMovieId, detail, cast, trailer, detailLoading,setDetailLoading } =
+  const { setMovieId, detail, cast, trailer, detailLoading, setDetailLoading } =
     StateContextCustom();
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
@@ -25,7 +25,7 @@ const Detail = () => {
   useEffect(() => {
     setMovieId(id);
     getHourMin(detail.runtime);
-    setDetailLoading(false)
+    setDetailLoading(false);
   }, [detail, trailer, cast]);
   return (
     <>
