@@ -31,10 +31,10 @@ const TvDetail = () => {
             />
           </div>
 
-          <div className="flex gap-5 flex-col items-center lg:flex-row container backdrop-blur-md shadow p-5 z-30">
+          <div className="flex gap-5 flex-col items-center lg:items-start lg:flex-row container backdrop-blur-md shadow p-5 z-30">
             <img
               src={`https://image.tmdb.org/t/p/original/${tvDetail?.poster_path}`}
-              className="w-[50%] h-[250px] md:w-[35%] md:h-[350px] lg:h-[500px] rounded"
+              className="w-[50%] h-[250px] md:w-[35%] md:h-[350px] lg:w-[25%] lg:h-[450px] rounded"
             />
             <div className="text-slate-200 flex flex-col gap-4 items-start">
               <div>
