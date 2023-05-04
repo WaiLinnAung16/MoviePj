@@ -18,7 +18,7 @@ const Carousel = () => {
       ) : (
         <MantineCarousel
           maw={"100vw"}
-          height={600}
+          height={700}
           mb="lg"
           withIndicators
           withControls
@@ -71,7 +71,7 @@ const Carousel = () => {
                       </div>
 
                       <p className=" font-bold text-slate-100 tracking-wide">
-                        {movie?.overview?.substring(0, 180)}...
+                        {movie?.overview?.substring(0, 150)}...
                       </p>
                       <div className="flex items-center gap-3">
                         <button
