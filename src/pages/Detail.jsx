@@ -51,7 +51,7 @@ const Detail = () => {
             />
             <div className="text-slate-200 flex flex-col gap-4 items-start">
               <div>
-                <div className="flex items-center gap-3 flex-wrap">
+                <div className="flex items-center gap-3 flex-wrap mb-2">
                   <h1 className="text-3xl md:text-3xl xl:text-4xl font-extrabold tracking-wide mb-1">
                     {detail?.title}
                   </h1>

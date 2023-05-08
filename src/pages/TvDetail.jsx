@@ -22,7 +22,7 @@ const TvDetail = () => {
       {detailLoading ? (
         <DetailLoading />
       ) : (
-        <div className=" h-full lg:h-screen bg-img flex justify-center items-center mt-20">
+        <div className=" h-full 2xl:h-screen bg-img flex justify-center items-center mt-20">
           <div className="fixed top-0 h-screen">
             <div className="bg-gradient-to-b from-slate-900/60 via-slate-900/80 to-slate-900/80 absolute top-0 w-full h-full z-10"></div>
             <img
