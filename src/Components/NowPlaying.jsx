@@ -1,10 +1,9 @@
 import React from "react";
-import { StateContextCustom } from "../Context/StateContext";
+
 import MoviesSlide from "./utils/MoviesSlide";
 
-const NowPlaying = () => {
-  const { nowPlaying } = StateContextCustom();
-  return <MoviesSlide data={nowPlaying} />;
+const NowPlaying = ({ movies, id, filter }) => {
+  return <MoviesSlide data={id === "0" ? movies : filter} />;
 };
 
 export default NowPlaying;
