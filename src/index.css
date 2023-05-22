@@ -46,3 +46,7 @@
   height: 50px;
   border-radius: 10px;
 }
+
+.custom-selector{
+  @apply px-2 py-1 outline-none cursor-pointer border-2 rounded text-sm transition-all hover:border-slate-700
+} 

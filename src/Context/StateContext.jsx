@@ -11,13 +11,15 @@ export const StateContextProvider = ({ children }) => {
   const [detail, setDetail] = useState([]);
   const [tvDetail, setTvDetail] = useState([]);
   const [movieId, setMovieId] = useState(640146);
-  const [tvId, setTvId] = useState(640146);
+  const [tvId, setTvId] = useState(221249);
   const [cast, setCast] = useState([]);
   const [tvCast, setTvCast] = useState([]);
   const [genre, setGenre] = useState([]);
   const [trailer, setTrailer] = useState([]);
   const [loading, setLoading] = useState(true);
   const [detailLoading, setDetailLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [tvPage, setTvPage] = useState(1);
 
   const fetchPopular = async () => {
     const api = await fetch(`
@@ -35,7 +37,7 @@ export const StateContextProvider = ({ children }) => {
   };
   const fetchNowPlaying = async () => {
     const api = await fetch(
-      `https://api.themoviedb.org/3/movie/now_playing?api_key=0af31f4831741bb6287a87a60e641056&language=en-US&page=1`
+      `https://api.themoviedb.org/3/movie/now_playing?api_key=0af31f4831741bb6287a87a60e641056&language=en-US&page=${page}`
     );
     const { results } = await api.json();
     setNowPlaying(results);
@@ -50,7 +52,7 @@ export const StateContextProvider = ({ children }) => {
   };
   const fetchTvShow = async () => {
     const api = await fetch(
-      `https://api.themoviedb.org/3/tv/popular?api_key=0af31f4831741bb6287a87a60e641056&language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/popular?api_key=0af31f4831741bb6287a87a60e641056&language=en-US&page=${tvPage}`
     );
     const { results } = await api.json();
     setTvShow(results);
@@ -104,10 +106,12 @@ export const StateContextProvider = ({ children }) => {
     fetchPopular();
     fetchTopRated();
     fetchGenre();
-    fetchNowPlaying();
     fetchUpComing();
-    fetchTvShow();
   }, []);
+  useEffect(() => {
+    fetchTvShow();
+    fetchNowPlaying();
+  }, [page, tvPage]);
   useEffect(() => {
     fetchMovieDetail();
     fetchTrailer();
@@ -134,6 +138,8 @@ export const StateContextProvider = ({ children }) => {
     loading,
     detailLoading,
     setDetailLoading,
+    setTvPage,
+    setPage,
   };
   return <StateContext.Provider value={data}>{children}</StateContext.Provider>;
 };
