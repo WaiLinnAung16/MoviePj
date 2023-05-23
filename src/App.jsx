@@ -7,6 +7,7 @@ import TvShow from "./pages/TvShow";
 import Footer from "./Components/Footer";
 import Detail from "./pages/Detail";
 import TvDetail from "./pages/TvDetail";
+import { Error } from "./pages/Error";
 
 const App = () => {
   return (
@@ -18,6 +19,7 @@ const App = () => {
         <Route path="/TvShow" element={<TvShow />} />
         <Route path="/detail/:id" element={<Detail />} />
         <Route path="/tvShow/:id" element={<TvDetail />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </div>
   );

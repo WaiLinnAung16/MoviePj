@@ -3,7 +3,7 @@ import NowPlaying from "../Components/NowPlaying";
 import { StateContextCustom } from "../Context/StateContext";
 import { Flex, Group, Pagination, Title } from "@mantine/core";
 import SlideLoading from "../Components/SlideLoading";
-
+import { TbMoodSadSquint } from "react-icons/tb";
 const Movies = () => {
   window.scrollTo({
     top: 0,
@@ -22,8 +22,8 @@ const Movies = () => {
   const filter = nowPlaying?.filter((f) => f.genre_ids.includes(Number(id)));
 
   return (
-    <div className="mt-16 py-10 bg-img min-h-screen">
-      <div className="flex justify-between gap-2 mx-5 mb-8">
+    <div className="mt-16 py-10 bg-img min-h-screen relative">
+      <div className="flex justify-between gap-2 mx-5 mb-5">
         <label htmlFor="genre" className="text-2xl font-bold">
           Categories
         </label>
@@ -45,15 +45,30 @@ const Movies = () => {
       </div>
 
       <NowPlaying movies={nowPlaying} filter={filter} id={id} />
+      {id === "0" ||
+        (filter?.length === 0 && (
+          <Flex
+            justify="center"
+            align="center"
+            direction="column"
+            gap="md"
+            h="100%"
+            mx="lg"
+            mb="lg"
+          >
+            <TbMoodSadSquint className="text-slate-900 text-5xl" />
+            <h1 className="text-4xl font-bold text-center">
+              Sorry, There's no movie to show.
+            </h1>
+          </Flex>
+        ))}
 
-      <>
-        <Pagination
-          total={10}
-          color="dark"
-          onChange={setPage}
-          className="w-full mt-5 flex justify-center"
-        ></Pagination>
-      </>
+      <Pagination
+        total={10}
+        color="dark"
+        onChange={setPage}
+        className="w-full mt-5 flex justify-center "
+      ></Pagination>
     </div>
   );
 };
