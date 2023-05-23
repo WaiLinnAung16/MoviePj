@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { StateContextCustom } from "../Context/StateContext";
 import MoviesSlide from "./utils/MoviesSlide";
 import LoadingGrid from "./LoadingGrid";
-import { Button, Menu, Select } from "@mantine/core";
 
 const Popular = () => {
   const { popular, loading } = StateContextCustom();

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NowPlaying from "../Components/NowPlaying";
 import { StateContextCustom } from "../Context/StateContext";
-import { Flex, Group, Pagination } from "@mantine/core";
+import { Flex, Group, Pagination, Title } from "@mantine/core";
 import SlideLoading from "../Components/SlideLoading";
 
 const Movies = () => {
@@ -9,7 +9,7 @@ const Movies = () => {
     top: 0,
     behavior: "smooth",
   });
-  const { nowPlaying, genre, setPage, loading } = StateContextCustom();
+  const { nowPlaying, genre, setPage } = StateContextCustom();
   const [id, setId] = useState("0");
   const handleChange = (e) => {
     setId(e.target.value);
@@ -23,8 +23,8 @@ const Movies = () => {
 
   return (
     <div className="mt-16 py-10 bg-img min-h-screen">
-      <div className="flex  gap-2 mx-5 mb-8">
-        <label htmlFor="genre" className="text-xl font-bold">
+      <div className="flex justify-between gap-2 mx-5 mb-8">
+        <label htmlFor="genre" className="text-2xl font-bold">
           Categories
         </label>
         <select
