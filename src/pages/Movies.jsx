@@ -52,7 +52,7 @@ const Movies = () => {
             align="center"
             direction="column"
             gap="md"
-            h="100%"
+            h="70vh"
             mx="lg"
             mb="lg"
           >
