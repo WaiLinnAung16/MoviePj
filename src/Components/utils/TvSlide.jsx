@@ -2,18 +2,18 @@ import React from "react";
 import { Badge, Title } from "@mantine/core";
 import { StateContextCustom } from "../../Context/StateContext";
 import { useNavigate } from "react-router-dom";
-
-const TvSlide = (props) => {
+import { BsPlayCircleFill } from "react-icons/bs";
+const TvSlide = ({ movies }) => {
   const { genre } = StateContextCustom();
   const nav = useNavigate();
 
   return (
-    <div className="grid grid-cols-12 gap-8 mx-5">
-      {props.data?.map((movie) => {
+    <div className="grid grid-cols-12 gap-8 mx-5 py-3">
+      {movies?.map((movie) => {
         return (
           <div
             key={movie.id}
-            className="col-span-6 md:col-span-3 lg:col-span-3 xl:col-span-2 2xl:col-span-1 relative flex flex-col gap-1 cursor-pointer group"
+            className="col-span-6 md:col-span-3 lg:col-span-3 xl:col-span-2 relative flex flex-col gap-1 cursor-pointer group"
             onClick={() => nav(`/tvShow/${movie.id}`)}
           >
             <Badge
@@ -24,11 +24,12 @@ const TvSlide = (props) => {
             >
               {movie?.vote_average}
             </Badge>
-            <div className="rounded overflow-hidden bg-slate-900">
+            <div className="rounded overflow-hidden bg-slate-900 relative">
               <img
                 src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
                 className="h-[250px] md:h-[300px] w-full transition-all group-hover:scale-110 group-hover:opacity-50"
               />
+              <BsPlayCircleFill className="text-4xl text-white opacity-0 transition-all duration-500 group-hover:opacity-100 absolute top-[45%] left-[40%] " />
             </div>
             <Title order={4} className="truncate">
               {movie?.name}

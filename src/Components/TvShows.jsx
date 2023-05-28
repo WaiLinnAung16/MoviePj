@@ -11,7 +11,7 @@ const TvShows = () => {
         Tv Show
         <span className="-z-10 after:block after:absolute after:-inset-0 after:border-2 after:border-slate-900 after:translate-x-1 after:translate-y-1"></span>
       </h1>
-      {loading ? <LoadingGrid /> : <TvSlide data={tvShow} />}
+      {loading ? <LoadingGrid /> : <TvSlide movies={tvShow} />}
     </div>
   );
 };
