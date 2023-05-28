@@ -10,8 +10,8 @@ export const StateContextProvider = ({ children }) => {
   const [tvShow, setTvShow] = useState([]);
   const [detail, setDetail] = useState([]);
   const [tvDetail, setTvDetail] = useState([]);
-  const [movieId, setMovieId] = useState(640146);
-  const [tvId, setTvId] = useState(221249);
+  const [movieId, setMovieId] = useState();
+  const [tvId, setTvId] = useState();
   const [cast, setCast] = useState([]);
   const [tvCast, setTvCast] = useState([]);
   const [genre, setGenre] = useState([]);
@@ -20,6 +20,7 @@ export const StateContextProvider = ({ children }) => {
   const [detailLoading, setDetailLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [tvPage, setTvPage] = useState(1);
+  const [images, setImages] = useState();
 
   const fetchPopular = async () => {
     const api = await fetch(`
@@ -27,6 +28,13 @@ export const StateContextProvider = ({ children }) => {
     const { results } = await api.json();
     setPopular(results);
     setLoading(false);
+  };
+  const fetchImages = async () => {
+    const api = await fetch(`
+    https://api.themoviedb.org/3/movie/${movieId}/images?api_key=0af31f4831741bb6287a87a60e641056`);
+    const { backdrops } = await api.json();
+    // console.log(results);
+    setImages(backdrops);
   };
   const fetchTopRated = async () => {
     const api = await fetch(`
@@ -116,6 +124,7 @@ export const StateContextProvider = ({ children }) => {
     fetchMovieDetail();
     fetchTrailer();
     fetchCast();
+    fetchImages();
   }, [movieId]);
   useEffect(() => {
     fetchTvDetail();
@@ -140,6 +149,7 @@ export const StateContextProvider = ({ children }) => {
     setDetailLoading,
     setTvPage,
     setPage,
+    images,
   };
   return <StateContext.Provider value={data}>{children}</StateContext.Provider>;
 };

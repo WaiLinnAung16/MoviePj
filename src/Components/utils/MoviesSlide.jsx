@@ -15,7 +15,7 @@ const MoviesSlide = (props) => {
         return (
           <div
             key={movie.id}
-            className="col-span-6 md:col-span-3 lg:col-span-2 xl:col-span-2 2xl:col-span-1 relative flex flex-col gap-1 cursor-pointer group"
+            className="col-span-6 md:col-span-3 lg:col-span-2 xl:col-span-2 relative flex flex-col gap-1 cursor-pointer group"
             onClick={() => nav(`/detail/${movie.id}`)}
           >
             <Badge
@@ -59,10 +59,3 @@ const MoviesSlide = (props) => {
 };
 
 export default MoviesSlide;
-
-{
-  /* <img
-  src={`https://image.tmdb.org/t/p/original/${movie?.poster_path}`}
-  className=" h-full w-full "
-/> */
-}
