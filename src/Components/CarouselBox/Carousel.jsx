@@ -1,9 +1,9 @@
 import React from "react";
 import { Carousel as MantineCarousel } from "@mantine/carousel";
 import { StateContextCustom } from "../../Context/StateContext";
-import { rem } from "@mantine/core";
+import { getStylesRef, rem } from "@mantine/core";
 import { BiChevronRight, BiChevronLeft } from "react-icons/bi";
-import "./Carousel.css";
+// import "./Carousel.css";
 import { useNavigate } from "react-router-dom";
 import SlideLoading from "../SlideLoading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -34,6 +34,24 @@ const Carousel = () => {
 
               "&[data-active]": {
                 width: rem(40),
+              },
+            },
+            controls: {
+              ref: getStylesRef("controls"),
+              transition: "opacity 150ms ease",
+              opacity: 0,
+            },
+            control: {
+              width: "50px",
+              height: "50px",
+              fontSize: "40px",
+              backgroundColor: "#fff !important",
+            },
+            root: {
+              "&:hover": {
+                [`& .${getStylesRef("controls")}`]: {
+                  opacity: 1,
+                },
               },
             },
           }}

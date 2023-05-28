@@ -10,8 +10,8 @@ export const StateContextProvider = ({ children }) => {
   const [tvShow, setTvShow] = useState([]);
   const [detail, setDetail] = useState([]);
   const [tvDetail, setTvDetail] = useState([]);
-  const [movieId, setMovieId] = useState();
-  const [tvId, setTvId] = useState();
+  const [movieId, setMovieId] = useState(447365);
+  const [tvId, setTvId] = useState(221249);
   const [cast, setCast] = useState([]);
   const [tvCast, setTvCast] = useState([]);
   const [genre, setGenre] = useState([]);
@@ -33,7 +33,6 @@ export const StateContextProvider = ({ children }) => {
     const api = await fetch(`
     https://api.themoviedb.org/3/movie/${movieId}/images?api_key=0af31f4831741bb6287a87a60e641056`);
     const { backdrops } = await api.json();
-    // console.log(results);
     setImages(backdrops);
   };
   const fetchTopRated = async () => {
