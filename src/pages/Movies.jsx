@@ -45,7 +45,7 @@ const Movies = () => {
       </div>
 
       <NowPlaying movies={nowPlaying} filter={filter} id={id} />
-
+      {id === "0" || (filter?.length === 0 && console.log("hi"))}
       <>
         <Pagination
           total={10}
