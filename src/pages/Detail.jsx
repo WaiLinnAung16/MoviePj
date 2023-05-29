@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { StateContextCustom } from "../Context/StateContext";
 import { Avatar, Blockquote } from "@mantine/core";
 import { AiFillStar } from "react-icons/ai";
@@ -11,21 +11,16 @@ import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import DetailLoading from "../Components/DetailLoading";
 import { Carousel } from "@mantine/carousel";
+import { BsFillArrowLeftCircleFill, BsYoutube } from "react-icons/bs";
 
 const Detail = () => {
   window.scrollTo({
     top: 0,
   });
   const { id } = useParams();
-  const {
-    setMovieId,
-    detail,
-    cast,
-    trailer,
-    detailLoading,
-    setDetailLoading,
-    images,
-  } = StateContextCustom();
+  const nav = useNavigate();
+  const { setMovieId, detail, cast, trailer, detailLoading, setDetailLoading } =
+    StateContextCustom();
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
   const getHourMin = (num) => {
@@ -49,9 +44,9 @@ const Detail = () => {
               backgroundImage: `url(https://image.tmdb.org/t/p/original/${detail?.backdrop_path})`,
             }}
           >
-            <div className="w-full h-full px-5 xl:px-20 flex justify-between items-end bg-gradient-to-b from-slate-900/60 via-slate-900/80 to-slate-900">
+            <div className="w-full h-full px-5 min-[2560px]:px-20 flex justify-between items-end bg-gradient-to-b from-slate-900/60 via-slate-900/80 to-slate-900">
               <div className="text-white flex flex-col gap-3 mb-10">
-                <h1 className="text-xl lg:text-3xl font-extrabold">
+                <h1 className="text-2xl lg:text-3xl font-extrabold">
                   {detail?.title}
                 </h1>
                 <div className="flex items-center flex-wrap gap-2">
@@ -90,20 +85,20 @@ const Detail = () => {
             </div>
           </div>
           <div className="grid grid-cols-12 gap-8 py-8 px-5 bg-slate-300/20 text-slate-900">
-            <div className="col-span-12 md:col-span-12 lg:col-span-2 xl:col-span-2 flex xl:justify-center">
+            <div className="col-span-12 lg:col-span-3 xl:col-span-2 flex xl:justify-center">
               <img
                 src={`https://image.tmdb.org/t/p/original/${detail?.poster_path}`}
                 className="h-[350px] xl:h-[400px] rounded"
               />
             </div>
-            <div className="col-span-12 md:col-span-12 lg:col-span-7 xl:col-span-6 flex flex-col gap-3">
+            <div className="col-span-12 lg:col-span-9 xl:col-span-6 flex flex-col gap-3">
               <div>
                 <h1 className="text-xl font-bold mb-3">Synopsis</h1>
-                <p className=" leading-6 w-[95%]">{detail?.overview}</p>
+                <p className=" leading-6 w-[90%]">{detail?.overview}</p>
               </div>
               <div>
                 <h1 className="text-xl font-bold mb-3">Starring</h1>
-                <div className="grid grid-cols-12 gap-4 h-[300px] overflow-y-scroll custom-scrollbar ">
+                <div className="grid grid-cols-12 gap-4 h-[250px] overflow-y-scroll custom-scrollbar ">
                   {cast?.map((c, i) => (
                     <div
                       className="col-span-6 md:col-span-3  xl:col-span-2"
@@ -120,12 +115,11 @@ const Detail = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-12 md:col-span-12 lg:col-span-4 xl:col-span-4">
+            <div className="col-span-12 xl:col-span-4">
               <h1 className="text-xl font-bold mb-3">Videos</h1>
               <Carousel
-                slideSize="100%"
-                align="center"
-                height={250}
+                align="start"
+                height={200}
                 styles={{
                   control: {
                     width: "40px",
@@ -142,15 +136,33 @@ const Detail = () => {
               >
                 {trailer?.map((t) => {
                   return (
-                    <embed
-                      src={`https://www.youtube.com/embed/${t.key}`}
-                      className="rounded ml-2"
-                      key={t.id}
-                    />
+                    <div className="flex flex-col items-start gap-1">
+                      <embed
+                        src={`https://www.youtube.com/embed/${t.key}`}
+                        className="rounded mr-2"
+                        key={t.id}
+                      />
+                      <a
+                        className="text-white rounded bg-slate-800 px-4 py-1"
+                        target="_blank"
+                        href={`https://youtu.be/${t.key}`}
+                      >
+                        Watch on YouTube
+                      </a>
+                    </div>
                   );
                 })}
               </Carousel>
             </div>
+          </div>
+
+          <div
+            onClick={() => nav(-1)}
+            className="w-full lg:flex justify-center hidden"
+          >
+            <p className="text-xl text-white flex items-center gap-2 absolute top-24  cursor-pointer">
+              <BsFillArrowLeftCircleFill /> Back to previous page
+            </p>
           </div>
         </div>
       )}

@@ -20,7 +20,8 @@ export const StateContextProvider = ({ children }) => {
   const [detailLoading, setDetailLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [tvPage, setTvPage] = useState(1);
-  const [images, setImages] = useState();
+
+  const [tvTrailer, setTvTrailer] = useState();
 
   const fetchPopular = async () => {
     const api = await fetch(`
@@ -29,12 +30,7 @@ export const StateContextProvider = ({ children }) => {
     setPopular(results);
     setLoading(false);
   };
-  const fetchImages = async () => {
-    const api = await fetch(`
-    https://api.themoviedb.org/3/movie/${movieId}/images?api_key=0af31f4831741bb6287a87a60e641056`);
-    const { backdrops } = await api.json();
-    setImages(backdrops);
-  };
+
   const fetchTopRated = async () => {
     const api = await fetch(`
     https://api.themoviedb.org/3/movie/top_rated?api_key=0af31f4831741bb6287a87a60e641056&language=en-US&page=1`);
@@ -101,6 +97,13 @@ export const StateContextProvider = ({ children }) => {
     const { results } = await api.json();
     setTrailer(results);
   };
+  const fetchTvTrailer = async () => {
+    const api = await fetch(
+      `https://api.themoviedb.org/3/tv/${tvId}/videos?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+    );
+    const { results } = await api.json();
+    setTvTrailer(results);
+  };
   const fetchGenre = async () => {
     const api = await fetch(
       `https://api.themoviedb.org/3/genre/movie/list?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
@@ -123,11 +126,11 @@ export const StateContextProvider = ({ children }) => {
     fetchMovieDetail();
     fetchTrailer();
     fetchCast();
-    fetchImages();
   }, [movieId]);
   useEffect(() => {
     fetchTvDetail();
     fetchTvCast();
+    fetchTvTrailer();
   }, [tvId]);
   const data = {
     popular,
@@ -148,7 +151,7 @@ export const StateContextProvider = ({ children }) => {
     setDetailLoading,
     setTvPage,
     setPage,
-    images,
+    tvTrailer,
   };
   return <StateContext.Provider value={data}>{children}</StateContext.Provider>;
 };
