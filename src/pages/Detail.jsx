@@ -51,7 +51,10 @@ const Detail = () => {
                 </h1>
                 <div className="flex items-center flex-wrap gap-2">
                   {detail?.genres?.map((genre, i) => (
-                    <h1 className="bg-red-900 rounded-md px-2 text-sm" key={i}>
+                    <h1
+                      className="bg-red-900 rounded-md px-2 text-sm"
+                      key={genre.id}
+                    >
                       {genre.name}
                     </h1>
                   ))}
@@ -72,7 +75,7 @@ const Detail = () => {
                     {cast?.map((c, i) => {
                       return (
                         i < 3 && (
-                          <p className="font-semibold" key={i}>
+                          <p className="font-semibold" key={c.id}>
                             {c?.name}
                             {i === 2 ? "" : ","}
                           </p>
@@ -85,16 +88,16 @@ const Detail = () => {
             </div>
           </div>
           <div className="grid grid-cols-12 gap-8 py-8 px-5 bg-slate-300/20 text-slate-900">
-            <div className="col-span-12 lg:col-span-3 xl:col-span-2 flex xl:justify-center">
+            <div className="col-span-12 lg:col-span-3 flex xl:justify-center">
               <img
                 src={`https://image.tmdb.org/t/p/original/${detail?.poster_path}`}
                 className="h-[350px] xl:h-[400px] rounded"
               />
             </div>
-            <div className="col-span-12 lg:col-span-9 xl:col-span-6 flex flex-col gap-3">
+            <div className="col-span-12 lg:col-span-9 flex flex-col gap-3">
               <div>
                 <h1 className="text-xl font-bold mb-3">Synopsis</h1>
-                <p className=" leading-6 w-[90%]">{detail?.overview}</p>
+                <p className=" leading-6  w-[95%]">{detail?.overview}</p>
               </div>
               <div>
                 <h1 className="text-xl font-bold mb-3">Starring</h1>
@@ -102,7 +105,7 @@ const Detail = () => {
                   {cast?.map((c, i) => (
                     <div
                       className="col-span-6 md:col-span-3  xl:col-span-2"
-                      key={i}
+                      key={c.id}
                     >
                       <Avatar
                         size="lg"
@@ -115,35 +118,38 @@ const Detail = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-12 xl:col-span-4">
+            <div className="col-span-12">
               <h1 className="text-xl font-bold mb-3">Videos</h1>
               <Carousel
                 align="start"
                 height={200}
                 styles={{
+                  controls: {
+                    top: -50,
+                    left: "unset",
+                    width: "110px",
+                  },
                   control: {
                     width: "40px",
                     height: "40px",
+                    right: 0,
                     opacity: 1,
                     backgroundColor: "#fff !important",
-
-                    "&[data-inactive]": {
-                      opacity: 0,
-                      cursor: "default",
-                    },
                   },
                 }}
               >
                 {trailer?.map((t) => {
                   return (
-                    <div className="flex flex-col items-start gap-1">
+                    <div
+                      className="flex flex-col text-center gap-1 px-1"
+                      key={t.id}
+                    >
                       <embed
                         src={`https://www.youtube.com/embed/${t.key}`}
-                        className="rounded mr-2"
-                        key={t.id}
+                        className="rounded"
                       />
                       <a
-                        className="text-white rounded bg-slate-800 px-4 py-1"
+                        className="text-black rounded border border-slate-800 px-4 py-1 transition-all duration-500 hover:text-white hover:bg-slate-800"
                         target="_blank"
                         href={`https://youtu.be/${t.key}`}
                       >
@@ -155,10 +161,9 @@ const Detail = () => {
               </Carousel>
             </div>
           </div>
-
           <div
             onClick={() => nav(-1)}
-            className="w-full lg:flex justify-center hidden"
+            className="w-full lg:flex justify-end pr-5 hidden"
           >
             <p className="text-xl text-white flex items-center gap-2 absolute top-24  cursor-pointer">
               <BsFillArrowLeftCircleFill /> Back to previous page
