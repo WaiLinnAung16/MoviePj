@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { StateContextCustom } from "../Context/StateContext";
-import { Avatar, Blockquote } from "@mantine/core";
+import { Avatar } from "@mantine/core";
 import { AiFillStar } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
 import { FiClock } from "react-icons/fi";
-import { RiDoubleQuotesL, RiDoubleQuotesR } from "react-icons/ri";
-import { IoPlayOutline } from "react-icons/io5";
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 import DetailLoading from "../Components/DetailLoading";
 import { Carousel } from "@mantine/carousel";
-import { BsFillArrowLeftCircleFill, BsYoutube } from "react-icons/bs";
+import { BsFillArrowLeftCircleFill } from "react-icons/bs";
 
 const Detail = () => {
   window.scrollTo({
@@ -32,6 +28,15 @@ const Detail = () => {
     getHourMin(detail.runtime);
     setDetailLoading(false);
   }, [detail, trailer, cast]);
+
+  // const fetchMovieDetail = async () => {
+  //   const api = await fetch(
+  //     `https://api.themoviedb.org/3/movie/${movieId}?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+  //   );
+  //   const results = await api.json();
+  //   setDetail(results);
+  // };
+  // useEffect(() => {});
   return (
     <>
       {detailLoading ? (
@@ -87,22 +92,22 @@ const Detail = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-12 gap-8 py-8 px-5 bg-slate-300/20 text-slate-900">
-            <div className="col-span-12 lg:col-span-3 flex xl:justify-center">
+          <div className="grid grid-cols-12 gap-8 py-8 px-5 2xl:px-20 bg-slate-300/20 text-slate-900">
+            <div className="col-span-12 lg:col-span-3  2xl:col-span-2">
               <img
                 src={`https://image.tmdb.org/t/p/original/${detail?.poster_path}`}
-                className="h-[350px] xl:h-[400px] rounded"
+                className="h-[350px] 2xl:w-[90%] 2xl:object-cover xl:h-[450px] rounded"
               />
             </div>
-            <div className="col-span-12 lg:col-span-9 flex flex-col gap-3">
+            <div className="col-span-12 lg:col-span-9 2xl:col-span-6 flex flex-col gap-3">
               <div>
                 <h1 className="text-xl font-bold mb-3">Synopsis</h1>
                 <p className=" leading-6  w-[95%]">{detail?.overview}</p>
               </div>
               <div>
                 <h1 className="text-xl font-bold mb-3">Starring</h1>
-                <div className="grid grid-cols-12 gap-4 h-[250px] overflow-y-scroll custom-scrollbar ">
-                  {cast?.map((c, i) => (
+                <div className="grid grid-cols-12 gap-4 h-[200px] lg:h-[140px] xl:h-[250px] overflow-y-scroll custom-scrollbar ">
+                  {cast?.map((c) => (
                     <div
                       className="col-span-6 md:col-span-3  xl:col-span-2"
                       key={c.id}
@@ -118,7 +123,7 @@ const Detail = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-12">
+            <div className="col-span-12 2xl:col-span-4">
               <h1 className="text-xl font-bold mb-3">Videos</h1>
               <Carousel
                 align="start"
@@ -138,25 +143,27 @@ const Detail = () => {
                   },
                 }}
               >
-                {trailer?.map((t) => {
-                  return (
-                    <div
-                      className="flex flex-col text-center gap-1 px-1"
-                      key={t.id}
-                    >
-                      <embed
-                        src={`https://www.youtube.com/embed/${t.key}`}
-                        className="rounded"
-                      />
-                      <a
-                        className="text-black rounded border border-slate-800 px-4 py-1 transition-all duration-500 hover:text-white hover:bg-slate-800"
-                        target="_blank"
-                        href={`https://youtu.be/${t.key}`}
+                {trailer?.map((t, index) => {
+                  if (index < 5) {
+                    return (
+                      <div
+                        className="flex flex-col text-center gap-1 px-1"
+                        key={t.id}
                       >
-                        Watch on YouTube
-                      </a>
-                    </div>
-                  );
+                        <embed
+                          src={`https://www.youtube.com/embed/${t.key}`}
+                          className="rounded"
+                        />
+                        <a
+                          className="text-black rounded border border-slate-800 px-4 py-1 transition-all duration-500 hover:text-white hover:bg-slate-800"
+                          target="_blank"
+                          href={`https://youtu.be/${t.key}`}
+                        >
+                          Watch on YouTube
+                        </a>
+                      </div>
+                    );
+                  }
                 })}
               </Carousel>
             </div>
