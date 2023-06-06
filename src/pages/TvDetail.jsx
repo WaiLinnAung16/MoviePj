@@ -14,18 +14,40 @@ const TvDetail = () => {
   });
   const { id } = useParams();
   const nav = useNavigate();
-  const {
-    setTvId,
-    tvDetail,
-    tvCast,
-    tvTrailer,
-    detailLoading,
-    setDetailLoading,
-  } = StateContextCustom();
+
+  const [tvDetail, setTvDetail] = useState([]);
+  const [tvCast, setTvCast] = useState([]);
+  const [tvTrailer, setTvTrailer] = useState();
+  const [detailLoading, setDetailLoading] = useState(true);
+  const fetchTvCast = async () => {
+    const api = await fetch(
+      `https://api.themoviedb.org/3/tv/${id}/credits?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+    );
+    const { cast } = await api.json();
+    setTvCast(cast);
+  };
+
+  const fetchTvDetail = async () => {
+    const api = await fetch(
+      `https://api.themoviedb.org/3/tv/${id}?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+    );
+    const results = await api.json();
+    setTvDetail(results);
+  };
+
+  const fetchTvTrailer = async () => {
+    const api = await fetch(
+      `https://api.themoviedb.org/3/tv/${id}/videos?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+    );
+    const { results } = await api.json();
+    setTvTrailer(results);
+  };
   useEffect(() => {
-    setTvId(id);
+    fetchTvDetail();
+    fetchTvCast();
+    fetchTvTrailer();
     setDetailLoading(false);
-  }, [tvDetail, tvCast]);
+  }, [id]);
   return (
     <>
       {detailLoading ? (
@@ -143,6 +165,14 @@ const TvDetail = () => {
                 <Title>There is no videos!</Title>
               )}
             </div>
+          </div>
+          <div
+            onClick={() => nav(-1)}
+            className="w-full lg:flex justify-end pr-5 hidden"
+          >
+            <p className="text-xl text-white flex items-center gap-2 absolute top-24  cursor-pointer">
+              <BsFillArrowLeftCircleFill /> Back to previous page
+            </p>
           </div>
         </div>
       )}
