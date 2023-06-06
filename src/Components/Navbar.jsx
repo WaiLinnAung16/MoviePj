@@ -79,6 +79,7 @@ const Navbar = () => {
                       to={`${nav.link}`}
                       className="text-black"
                       key={nav.id}
+                      onClick={() => handler()}
                     >
                       {nav.title}
                     </NavLink>

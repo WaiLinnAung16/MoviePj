@@ -52,9 +52,9 @@ const Detail = () => {
     fetchMovieDetail();
     fetchCast();
     fetchTrailer();
-    setDetailLoading(!detailLoading);
   }, [id]);
   useEffect(() => {
+    setDetailLoading(false);
     getHourMin(detail?.runtime);
   }, [detail]);
   return (
