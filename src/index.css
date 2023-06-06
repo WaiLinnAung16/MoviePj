@@ -38,7 +38,7 @@
 /* Chrome, Edge, and Safari */
 .custom-scrollbar::-webkit-scrollbar {
   width: 5px;
-  background-color: #aeaeae38;
+  background-color: #aeaeae25;
   border-radius: 10px;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb {
@@ -47,6 +47,6 @@
   border-radius: 10px;
 }
 
-.custom-selector{
-  @apply min-w-[200px] px-2 py-1 outline-none cursor-pointer bg-slate-50 border-2 rounded text-sm transition-all hover:border-slate-700
-} 
+.custom-selector {
+  @apply min-w-[200px] px-2 py-1 outline-none cursor-pointer bg-slate-50 border-2 rounded text-sm transition-all hover:border-slate-700;
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { StateContextCustom } from "../Context/StateContext";
 import { Avatar } from "@mantine/core";
 import { AiFillStar } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
@@ -23,11 +22,6 @@ const Detail = () => {
     setHour(Math.floor(num / 60).toString());
     setMinute((num / 60).toFixed(2).toString().split(".")[1]);
   };
-  // useEffect(() => {
-  //   setMovieId(id);
-  //   getHourMin(detail.runtime);
-  //   setDetailLoading(false);
-  // }, [detail, trailer, cast]);
 
   const [detail, setDetail] = useState([]);
   const [cast, setCast] = useState([]);
@@ -58,9 +52,15 @@ const Detail = () => {
     fetchMovieDetail();
     fetchCast();
     fetchTrailer();
-    getHourMin(detail?.runtime);
-    setDetailLoading(false);
+    setDetailLoading((pre) => !pre);
+
+    return () => {
+      setDetailLoading((pre) => !pre);
+    };
   }, [id]);
+  useEffect(() => {
+    getHourMin(detail?.runtime);
+  }, [detail]);
   return (
     <>
       {detailLoading ? (
