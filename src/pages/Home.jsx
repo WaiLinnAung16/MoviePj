@@ -4,15 +4,18 @@ import TopRated from "../Components/TopRated";
 import TvShows from "../Components/TvShows";
 import Popular from "../Components/Popular";
 import Footer from "../Components/Footer";
+import { Container } from "@mantine/core";
 
 const Home = () => {
   return (
     <>
       <div className=" pb-10 bg-img">
         <Hero />
-        <Popular />
-        <TopRated />
-        <TvShows />
+        <div className="container mx-auto">
+          <Popular />
+          <TopRated />
+          <TvShows />
+        </div>
       </div>
       <Footer />
     </>

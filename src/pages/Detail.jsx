@@ -112,7 +112,7 @@ const Detail = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-12 gap-8 py-8 pl-5 min-[2550px]:pl-20 bg-slate-300/20 text-slate-900">
+          <div className="grid grid-cols-12 gap-8 py-8 pl-5 min-h-[40%] min-[2550px]:pl-20 bg-slate-300/20 text-slate-900">
             <div className="col-span-12 lg:col-span-3 xl:col-span-2 2xl:col-span-2 min-[2550px]:col-span-2">
               <img
                 src={`https://image.tmdb.org/t/p/original/${detail?.poster_path}`}
@@ -126,7 +126,7 @@ const Detail = () => {
               </div>
               <div>
                 <h1 className="text-xl font-bold mb-3">Starring</h1>
-                <div className="grid grid-cols-12 gap-4 h-[200px] lg:h-[180px] xl:h-[200px] 2xl:h-[140px] overflow-y-scroll custom-scrollbar ">
+                <div className="grid grid-cols-12 gap-4 h-[200px] lg:h-[180px] xl:h-[200px] 2xl:h-[180px] overflow-y-scroll custom-scrollbar ">
                   {cast?.map((c) => (
                     <div
                       className="col-span-6 md:col-span-3 xl:col-span-2"

@@ -31,7 +31,7 @@ const Navbar = () => {
 
   return (
     <>
-      <div className=" py-5 px-5 fixed top-0 w-full z-50 bg-slate-100">
+      <div className=" py-5 px-5 fixed top-0 w-full z-40 bg-slate-100">
         <div className=" container mx-auto flex justify-between items-center">
           <Link to={"/"}>
             <h1 className="relative group cursor-pointer">
@@ -45,12 +45,7 @@ const Navbar = () => {
           <ul className="lg:flex items-center gap-3 hidden">
             {navlink.map((nav) => {
               return (
-                <NavLink
-                  id="navMenu"
-                  to={`${nav.link}`}
-                  className="text-black"
-                  key={nav.id}
-                >
+                <NavLink id="navMenu" to={`${nav.link}`} key={nav.id}>
                   {nav.title}
                 </NavLink>
               );
@@ -69,25 +64,27 @@ const Navbar = () => {
             />
           )}
 
-          {show && (
-            <div className="fixed z-50 bg-slate-100/90 backdrop-blur-sm w-full py-5 left-0 top-20 lg:hidden">
-              <ul className="flex flex-col mx-5 gap-5">
-                {navlink.map((nav) => {
-                  return (
-                    <NavLink
-                      id="navMenu"
-                      to={`${nav.link}`}
-                      className="text-black"
-                      key={nav.id}
-                      onClick={() => handler()}
-                    >
-                      {nav.title}
-                    </NavLink>
-                  );
-                })}
-              </ul>
-            </div>
-          )}
+          <div
+            className={`fixed z-10 bg-slate-100/90 backdrop-blur-sm shadow-lg w-full  py-5 left-0 transition-all duration-500 lg:hidden ${
+              show ? "translate-y-0 top-20" : "-translate-y-[200px] top-0"
+            }`}
+          >
+            <ul className="flex flex-col mx-5 gap-5">
+              {navlink.map((nav) => {
+                return (
+                  <NavLink
+                    id="navMenu"
+                    to={`${nav.link}`}
+                    className="text-black"
+                    key={nav.id}
+                    onClick={() => handler()}
+                  >
+                    {nav.title}
+                  </NavLink>
+                );
+              })}
+            </ul>
+          </div>
         </div>
       </div>
     </>
