@@ -81,12 +81,7 @@ const Navbar = () => {
           <ul className="lg:flex items-center gap-3 hidden">
             {navlink.map((nav) => {
               return (
-                <NavLink
-                  id="navMenu"
-                  to={`${nav.link}`}
-                  className="text-black"
-                  key={nav.id}
-                >
+                <NavLink id="navMenu" to={`${nav.link}`} key={nav.id}>
                   {nav.title}
                 </NavLink>
               );

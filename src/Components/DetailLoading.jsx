@@ -1,61 +1,79 @@
 import React from "react";
+import SlideLoading from "./SlideLoading";
 
 const DetailLoading = () => {
   return (
-    <div className=" h-screen  flex justify-center items-center bg-slate-300 animate-pulse">
-      <div className="flex gap-5 flex-col items-center lg:flex-row container p-5 z-30 bg-slate-200">
-        <div className="w-[50%] h-[250px] md:w-[50%] md:h-[350px] lg:h-[500px] rounded bg-slate-500"></div>
-        <div className="flex flex-col gap-5">
-          <div className="w-96 h-6 bg-slate-500 rounded"></div>
-          <div className="flex gap-2">
-            <div className="w-20 h-5 bg-slate-500 rounded"></div>
-            <div className="w-20 h-5 bg-slate-500 rounded"></div>
-            <div className="w-20 h-5 bg-slate-500 rounded"></div>
+    <>
+      <SlideLoading />
+      <div className="px-5 mt-5 grid grid-cols-12 gap-5">
+        <div className="col-span-12 lg:col-span-3 xl:col-span-2 2xl:col-span-2 min-[2550px]:col-span-2">
+          <div className="w-full h-[300px] rounded bg-slate-300 animate-pulse "></div>
+        </div>
+        <div className="col-span-12 lg:col-span-9 xl:col-span-6 2xl:col-span-6 flex flex-col gap-3">
+          <h1 className="text-xl font-bold mb-2">Synopsis</h1>
+          <div className="flex flex-wrap gap-1">
+            <div className="w-20 h-2 bg-slate-300 rounded"></div>
+            <div className="w-16 h-2 bg-slate-300 rounded"></div>
+            <div className="w-20 h-2 bg-slate-300 rounded"></div>
+            <div className="w-10 h-2 bg-slate-300 rounded"></div>
+            <div className="w-35 h-2 bg-slate-300 rounded"></div>
+            <div className="w-39 h-2 bg-slate-300 rounded"></div>
+            <div className="w-20 h-2 bg-slate-300 rounded"></div>
+            <div className="w-10 h-2 bg-slate-300 rounded"></div>
+            <div className="w-30 h-2 bg-slate-300 rounded"></div>
+            <div className="w-52 h-2 bg-slate-300 rounded"></div>
+            <div className="w-20 h-2 bg-slate-300 rounded"></div>
+            <div className="w-16 h-2 bg-slate-300 rounded"></div>
+            <div className="w-20 h-2 bg-slate-300 rounded"></div>
+            <div className="w-10 h-2 bg-slate-300 rounded"></div>
+            <div className="w-35 h-2 bg-slate-300 rounded"></div>
+            <div className="w-39 h-2 bg-slate-300 rounded"></div>
+            <div className="w-20 h-2 bg-slate-300 rounded"></div>
+            <div className="w-10 h-2 bg-slate-300 rounded"></div>
+            <div className="w-30 h-2 bg-slate-300 rounded"></div>
+            <div className="w-52 h-2 bg-slate-300 rounded"></div>
+            <div className="w-20 h-2 bg-slate-300 rounded"></div>
+            <div className="w-16 h-2 bg-slate-300 rounded"></div>
+            <div className="w-20 h-2 bg-slate-300 rounded"></div>
+            <div className="w-10 h-2 bg-slate-300 rounded"></div>
+            <div className="w-35 h-2 bg-slate-300 rounded"></div>
+            <div className="w-39 h-2 bg-slate-300 rounded"></div>
+            <div className="w-20 h-2 bg-slate-300 rounded"></div>
+            <div className="w-10 h-2 bg-slate-300 rounded"></div>
           </div>
-          <div className="w-20 h-5 bg-slate-500 rounded"></div>
-          <div className="flex flex-wrap gap-2 w-[50%]">
-            <div className="w-40 h-2 bg-slate-500 rounded"></div>
-            <div className="w-16 h-2 bg-slate-500 rounded"></div>
-            <div className="w-20 h-2 bg-slate-500 rounded"></div>
-            <div className="w-10 h-2 bg-slate-500 rounded"></div>
-            <div className="w-44 h-2 bg-slate-500 rounded"></div>
-            <div className="w-52 h-2 bg-slate-500 rounded"></div>
-            <div className="w-20 h-2 bg-slate-500 rounded"></div>
-            <div className="w-10 h-2 bg-slate-500 rounded"></div>
-            <div className="w-64 h-2 bg-slate-500 rounded"></div>
-            <div className="w-52 h-2 bg-slate-500 rounded"></div>
-            <div className="w-40 h-2 bg-slate-500 rounded"></div>
-            <div className="w-16 h-2 bg-slate-500 rounded"></div>
-            <div className="w-20 h-2 bg-slate-500 rounded"></div>
-            <div className="w-10 h-2 bg-slate-500 rounded"></div>
-            <div className="w-44 h-2 bg-slate-500 rounded"></div>
-            <div className="w-52 h-2 bg-slate-500 rounded"></div>
-            <div className="w-20 h-2 bg-slate-500 rounded"></div>
-            <div className="w-10 h-2 bg-slate-500 rounded"></div>
-            <div className="w-64 h-2 bg-slate-500 rounded"></div>
-            <div className="w-52 h-2 bg-slate-500 rounded"></div>
-          </div>
-          <div className="w-20 h-5 bg-slate-500 rounded"></div>
-          <div className="flex  items-center gap-5">
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-12 h-12 bg-slate-500 rounded-full"></div>
-              <div className="w-14 h-3 bg-slate-500 rounded"></div>
-              <div className="w-20 h-5 bg-slate-500 rounded"></div>
+          <h1 className="text-xl font-bold mb-3">Starring</h1>
+          <div className="flex gap-5">
+            <div className="h-[180px] flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full bg-slate-300"></div>
+              <div className="w-[60px] h-3 bg-slate-300"></div>
+              <div className="w-[90px] h-4 bg-slate-300"></div>
             </div>
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-12 h-12 bg-slate-500 rounded-full"></div>
-              <div className="w-14 h-3 bg-slate-500 rounded"></div>
-              <div className="w-20 h-5 bg-slate-500 rounded"></div>
+            <div className="h-[180px] flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full bg-slate-300"></div>
+              <div className="w-[60px] h-3 bg-slate-300"></div>
+              <div className="w-[90px] h-4 bg-slate-300"></div>
             </div>
-            <div className="flex flex-col items-center gap-2">
-              <div className="w-12 h-12 bg-slate-500 rounded-full"></div>
-              <div className="w-14 h-3 bg-slate-500 rounded"></div>
-              <div className="w-20 h-5 bg-slate-500 rounded"></div>
+            <div className="h-[180px] flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full bg-slate-300"></div>
+              <div className="w-[60px] h-3 bg-slate-300"></div>
+              <div className="w-[90px] h-4 bg-slate-300"></div>
+            </div>
+            <div className="h-[180px] flex flex-col items-center gap-2">
+              <div className="w-14 h-14 rounded-full bg-slate-300"></div>
+              <div className="w-[60px] h-3 bg-slate-300"></div>
+              <div className="w-[90px] h-4 bg-slate-300"></div>
             </div>
           </div>
         </div>
+        <div className="ol-span-12 xl:col-span-4 2xl:col-span-4">
+          <h1 className="text-xl font-bold mb-3">Videos</h1>
+          <div
+            className="w-full h-[200px] bg-slate-300 rounded
+          "
+          ></div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

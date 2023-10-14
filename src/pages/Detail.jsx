@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { StateContextCustom } from "../Context/StateContext";
 import { Avatar } from "@mantine/core";
 import { AiFillStar } from "react-icons/ai";
 import { MdDateRange } from "react-icons/md";
@@ -15,28 +14,49 @@ const Detail = () => {
   });
   const { id } = useParams();
   const nav = useNavigate();
-  const { setMovieId, detail, cast, trailer, detailLoading, setDetailLoading } =
-    StateContextCustom();
+  // const { setMovieId, cast, trailer, detailLoading, setDetailLoading } =
+  //   StateContextCustom();
   const [hour, setHour] = useState("");
   const [minute, setMinute] = useState("");
   const getHourMin = (num) => {
     setHour(Math.floor(num / 60).toString());
     setMinute((num / 60).toFixed(2).toString().split(".")[1]);
   };
-  useEffect(() => {
-    setMovieId(id);
-    getHourMin(detail.runtime);
-    setDetailLoading(false);
-  }, [detail, trailer, cast]);
 
-  // const fetchMovieDetail = async () => {
-  //   const api = await fetch(
-  //     `https://api.themoviedb.org/3/movie/${movieId}?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
-  //   );
-  //   const results = await api.json();
-  //   setDetail(results);
-  // };
-  // useEffect(() => {});
+  const [detail, setDetail] = useState([]);
+  const [cast, setCast] = useState([]);
+  const [trailer, setTrailer] = useState([]);
+  const [detailLoading, setDetailLoading] = useState(true);
+  const fetchMovieDetail = async () => {
+    const api = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+    );
+    const results = await api.json();
+    setDetail(results);
+  };
+  const fetchCast = async () => {
+    const api = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/credits?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+    );
+    const { cast } = await api.json();
+    setCast(cast);
+  };
+  const fetchTrailer = async () => {
+    const api = await fetch(
+      `https://api.themoviedb.org/3/movie/${id}/videos?api_key=0af31f4831741bb6287a87a60e641056&language=en-US`
+    );
+    const { results } = await api.json();
+    setTrailer(results);
+  };
+  useEffect(() => {
+    fetchMovieDetail();
+    fetchCast();
+    fetchTrailer();
+  }, [id]);
+  useEffect(() => {
+    setDetailLoading(false);
+    getHourMin(detail?.runtime);
+  }, [detail]);
   return (
     <>
       {detailLoading ? (
@@ -92,24 +112,24 @@ const Detail = () => {
               </div>
             </div>
           </div>
-          <div className="grid grid-cols-12 gap-8 py-8 px-5 2xl:px-20 bg-slate-300/20 text-slate-900">
-            <div className="col-span-12 lg:col-span-3  2xl:col-span-2">
+          <div className="grid grid-cols-12 gap-8 py-8 pl-5 min-h-[40%] min-[2550px]:pl-20 bg-slate-300/20 text-slate-900">
+            <div className="col-span-12 lg:col-span-3 xl:col-span-2 2xl:col-span-2 min-[2550px]:col-span-2">
               <img
                 src={`https://image.tmdb.org/t/p/original/${detail?.poster_path}`}
-                className="h-[350px] 2xl:w-[90%] 2xl:object-cover xl:h-[450px] rounded"
+                className="h-[350px] 2xl:[450px] rounded"
               />
             </div>
-            <div className="col-span-12 lg:col-span-9 2xl:col-span-6 flex flex-col gap-3">
+            <div className="col-span-12 lg:col-span-9 xl:col-span-6 2xl:col-span-6 flex flex-col gap-3">
               <div>
                 <h1 className="text-xl font-bold mb-3">Synopsis</h1>
                 <p className=" leading-6  w-[95%]">{detail?.overview}</p>
               </div>
               <div>
                 <h1 className="text-xl font-bold mb-3">Starring</h1>
-                <div className="grid grid-cols-12 gap-4 h-[200px] lg:h-[140px] xl:h-[250px] overflow-y-scroll custom-scrollbar ">
+                <div className="grid grid-cols-12 gap-4 h-[200px] lg:h-[180px] xl:h-[200px] 2xl:h-[180px] overflow-y-scroll custom-scrollbar ">
                   {cast?.map((c) => (
                     <div
-                      className="col-span-6 md:col-span-3  xl:col-span-2"
+                      className="col-span-6 md:col-span-3 xl:col-span-2"
                       key={c.id}
                     >
                       <Avatar
@@ -123,7 +143,7 @@ const Detail = () => {
                 </div>
               </div>
             </div>
-            <div className="col-span-12 2xl:col-span-4">
+            <div className="col-span-12 xl:col-span-4 2xl:col-span-4">
               <h1 className="text-xl font-bold mb-3">Videos</h1>
               <Carousel
                 align="start"

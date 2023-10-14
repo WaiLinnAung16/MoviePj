@@ -22,7 +22,7 @@ const Movies = () => {
   const filter = nowPlaying?.filter((f) => f.genre_ids.includes(Number(id)));
 
   return (
-    <div className="mt-16 py-10 bg-img min-h-screen relative">
+    <div className="mt-16 py-10 bg-img min-h-screen relative container mx-auto">
       <div className="flex justify-between gap-2 mx-5 mb-5">
         <label htmlFor="genre" className="text-2xl font-bold">
           Categories
