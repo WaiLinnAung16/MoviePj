@@ -22,8 +22,8 @@ const TvShow = () => {
     return setTvPage(1);
   }, []);
   return (
-    <div className="mt-16 py-10 bg-img min-h-screen container mx-auto">
-      <div className="flex justify-between gap-2 mx-5 mb-5">
+    <div className="py-10 bg-img min-h-screen container mx-auto">
+      <div className="flex justify-between gap-2 mx-5 mb-5 mt-14">
         <label htmlFor="genre" className="text-2xl font-bold">
           Categories
         </label>

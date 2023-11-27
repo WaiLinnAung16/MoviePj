@@ -8,9 +8,12 @@ import { useNavigate } from "react-router-dom";
 import SlideLoading from "../SlideLoading";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useMediaQuery } from "@mantine/hooks";
 const Carousel = () => {
   const { upComing, genre, loading } = StateContextCustom();
   const nav = useNavigate();
+  const matches = useMediaQuery('(max-width: 768px)');
+
   return (
     <>
       {loading ? (
@@ -18,7 +21,7 @@ const Carousel = () => {
       ) : (
         <MantineCarousel
           maw={"100vw"}
-          height={700}
+          height={matches ? '100vh' : '750px'}
           mb="lg"
           withIndicators
           withControls
@@ -60,7 +63,7 @@ const Carousel = () => {
             return (
               i < 6 && (
                 <MantineCarousel.Slide key={movie.id}>
-                  <div className="h-[700px]">
+                  <div className="h-[750px] min-[2560px]:h-[900px]">
                     <div className="bg-gradient-to-b from-slate-900/40 via-slate-900/60 to-slate-900 absolute top-0 w-full h-full z-10"></div>
                     <LazyLoadImage
                       effect="blur"
@@ -69,7 +72,7 @@ const Carousel = () => {
                       src={`https://image.tmdb.org/t/p/original/${movie?.backdrop_path}`}
                       className="w-full h-full object-cover"
                     />
-                    <div className="absolute bottom-10 left-5 md:left-12 flex flex-col gap-3 text-white w-[90%] md:w-[80%] lg:w-[60%] xl:w-[40%] z-10">
+                    <div className="absolute bottom-10 left-5 min-[2560px]:left-[540px] flex flex-col gap-3 text-white w-[90%] md:w-[80%] lg:w-[60%] xl:w-[40%] z-10">
                       <h1 className="text-3xl md:text-4xl font-extrabold tracking-wider">
                         {movie?.title}
                       </h1>

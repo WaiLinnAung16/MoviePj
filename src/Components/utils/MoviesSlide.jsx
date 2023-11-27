@@ -5,15 +5,21 @@ import { useNavigate } from "react-router-dom";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
 import { BsPlayCircleFill } from "react-icons/bs";
+import {motion} from 'framer-motion'
+
 const MoviesSlide = (props) => {
   const { genre } = StateContextCustom();
   const nav = useNavigate();
 
   return (
-    <div className="grid grid-cols-12 gap-8 mx-5 py-3">
+    <motion.div layout className="grid grid-cols-12 gap-8 mx-5 py-3">
       {props.data?.map((movie) => {
         return (
-          <div
+          <motion.div
+          animate={{opacity:1}}
+          initial={{opacity:0}}
+          exit={{opacity:0}}
+          layout
             key={movie.id}
             className="col-span-6 md:col-span-4 lg:col-span-3 xl:col-span-2 2xl:col-span-2 min-[2550px]:col-span-2 relative flex flex-col gap-1 cursor-pointer group"
             onClick={() => nav(`/detail/${movie.id}`)}
@@ -24,7 +30,7 @@ const MoviesSlide = (props) => {
               radius="lg"
               className="absolute -top-3 left-[38%] md:left-[40%] bg-red-900 z-30"
             >
-              {movie?.vote_average}
+              {Number(movie?.vote_average).toFixed(1)}
             </Badge>
             <div className="rounded overflow-hidden bg-slate-900 relative">
               <LazyLoadImage
@@ -51,10 +57,10 @@ const MoviesSlide = (props) => {
                   )
               )}
             </div>
-          </div>
+          </motion.div>
         );
       })}
-    </div>
+    </motion.div>
   );
 };
 

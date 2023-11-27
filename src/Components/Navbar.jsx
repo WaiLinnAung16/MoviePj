@@ -4,7 +4,13 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import { IoMenu } from "react-icons/io5";
 import { RxCross2 } from "react-icons/rx";
 import "./Navbar.css";
-import { motion, stagger } from "framer-motion";
+import {
+  animate,
+  motion,
+  stagger,
+  useMotionValueEvent,
+  useScroll,
+} from "framer-motion";
 import { Menu } from "@mantine/core";
 import { useEffect } from "react";
 const navlink = [
@@ -24,50 +30,79 @@ const navlink = [
     link: "/TvShow",
   },
 ];
-const mobileNavBox = {
+
+const mobileNavContainer = {
   initial: {
-    scaleY: 0,
-    transition: {
-      when: "afterChildren",
-      staggerChildren: 0.1,
-    },
+    y: '-130%',
+    transition:{
+      duration:0.5,
+      when:'afterChildren'
+    }
   },
   animate: {
-    scaleY: 1,
+    y: 0,
     transition: {
+      duration:0.5,
       when: "beforeChildren",
-      duration: 0.4,
-      staggerChildren: 0.5,
+      staggerChildren: 0.09,
+      ease:[0.6,0.1,1,0.5]
     },
+    
   },
 };
 
 const mobileNav = {
   initial: {
     opacity: 0,
-    y: 30,
+    y: -50,
+    
   },
   animate: {
     opacity: 1,
     y: 0,
-    transition: {
-      type: "spring",
-      stiffness: 200,
-    },
   },
 };
+
 const Navbar = () => {
   const [show, setShow] = useState(false);
+  const [hidden, setHidden] = useState(false);
+
+  const { scrollY, scrollYProgress } = useScroll();
   const navigate = useNavigate();
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const prev = scrollY.getPrevious();
+    if (latest > prev) {
+      setShow(false);
+    }
+    if (latest > prev && prev > 150) {
+      setHidden(true);
+    } else {
+      setHidden(false);
+    }
+  });
   const handler = () => {
     setShow((show) => (show = !show));
   };
-  window.addEventListener("scroll", () => {
-    setShow(false);
-  });
+
   return (
     <>
-      <div className=" py-5 px-5 fixed top-0 w-full z-50 bg-slate-100">
+      <motion.div
+        variants={{
+          hidden: {
+            y: "-100%",
+          },
+          visible: {
+            y: 0,
+          },
+        }}
+        animate={hidden ? "hidden" : "visible"}
+        transition={{
+          type: "spring",
+          duration: 0.3,
+        }}
+        className=" py-5 px-5 fixed top-0 w-full z-50 bg-slate-100"
+      >
         <div className=" container mx-auto flex justify-between items-center relative">
           <Link to={"/"}>
             <h1 className="relative group cursor-pointer">
@@ -100,15 +135,15 @@ const Navbar = () => {
             />
           )}
         </div>
-      </div>
+      </motion.div>
       {/* Mobile Navbar */}
       <motion.div
-        variants={mobileNavBox}
+        variants={mobileNavContainer}
         initial={false}
         animate={show ? "animate" : "initial"}
-        className="bg-slate-100/80 backdrop-blur-md h-screen w-full top-0 left-0 origin-top flex items-end absolute z-40"
+        className="bg-slate-100/80 backdrop-blur-md h-screen w-full fixed z-40"
       >
-        <div className="flex flex-col gap-5 mb-5 ml-5">
+        <div className="flex flex-col items-center justify-center gap-5 h-full mb-5">
           {navlink.map((nav) => {
             return (
               <motion.div
@@ -118,7 +153,7 @@ const Navbar = () => {
                   setShow(false);
                 }}
                 key={nav.id}
-                className="font-black text-[#333] text-7xl uppercase"
+                className="font-black text-slate-900 text-2xl uppercase"
               >
                 {nav.title}
               </motion.div>
