@@ -12,7 +12,7 @@ import { useMediaQuery } from "@mantine/hooks";
 const Carousel = () => {
   const { upComing, genre, loading } = StateContextCustom();
   const nav = useNavigate();
-  const matches = useMediaQuery('(max-width: 768px)');
+  const matches = useMediaQuery("(max-width: 768px)");
 
   return (
     <>
@@ -21,7 +21,7 @@ const Carousel = () => {
       ) : (
         <MantineCarousel
           maw={"100vw"}
-          height={matches ? '100vh' : '750px'}
+          height={matches ? "100vh" : "750px"}
           mb="lg"
           withIndicators
           withControls
@@ -63,7 +63,7 @@ const Carousel = () => {
             return (
               i < 6 && (
                 <MantineCarousel.Slide key={movie.id}>
-                  <div className="h-[750px] min-[2560px]:h-[900px]">
+                  <div className="h-screen lg:h-[750px] min-[2560px]:h-[900px]">
                     <div className="bg-gradient-to-b from-slate-900/40 via-slate-900/60 to-slate-900 absolute top-0 w-full h-full z-10"></div>
                     <LazyLoadImage
                       effect="blur"
